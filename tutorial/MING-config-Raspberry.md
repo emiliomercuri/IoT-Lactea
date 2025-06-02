@@ -144,3 +144,4 @@ Posterior mente, copie o código do IP e cole na aba de navegação do navegador
 > "ipNumber":3000	; para o Grafana
 >
 
+## Python Install
