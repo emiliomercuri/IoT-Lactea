@@ -75,3 +75,72 @@ sudo systemctl disable nodered.service
 ```
 
 ## InfluxDB Install
+Para baixar o Influx, executar os seguintes códigos:
+```
+curl https://repos.influxdata.com/influxdata-archive.key | gpg --dearmor | sudo tee /usr/share/keyrings/influ
+xdb-archive-keyring.gpg >/dev/null
+```
+E
+```
+echo "deb [signed-by=/usr/share/keyrings/influxdb-archive-keyring.gpg] https://repos.influxdata.com/debian stable main" | sudo tee /etc/apt/sources.list.d/influxdb.list
+deb [signed-by=/usr/share/keyrings/influxdb-archive-keyring.gpg] https://repos.influxdata.com/debian stable main
+```
+
+Atuzalizar os pacotes com:
+```
+sudo apt update
+```
+
+Instalar o Influx, execute:
+```
+sudo apt install influxdb2
+```
+
+Para habilitar e inicar o Influx, execute:
+```
+sudo systemctl unmask influxdb
+sudo systemctl enable influxdb
+sudo systemctl start influxdb
+```
+
+## Grafana Install
+Para baixar o Grafana, execute os seguintes códigos:
+```
+curl https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/grafana-archive-keyrings.gpg >/dev/null
+```
+E
+```
+echo "deb [signed-by=/usr/share/keyrings/grafana-archive-keyrings.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+```
+
+Atuzalizar os pacotes com:
+```
+sudo apt update
+```
+
+Para instalar o Grafana, execute:
+```
+sudo apt install grafana
+```
+
+Para habilitar e iniciar o Grafana, execute:
+```
+sudo systemctl enable grafana-server
+sudo systemctl start grafana-server
+```
+
+## Acessando os ambientes do Node Red, InfluxDB e Grafana
+Para acessar os ambientes, abra um navegador e digite o número do IP da conexão do Raspberry Pi. Você pode encontrar o número do IP utilizando o código abaixo:
+```
+ifconfig
+```
+
+Posterior mente, copie o código do IP e cole na aba de navegação do navegador, acrescente ":" e o número das portas de acesso para cada ambiente. Segue exemplos:
+
+> "ipNumber":1880	; para o Node Red
+>
+> "ipNumber":8086	; para o Influx
+>
+> "ipNumber":3000	; para o Grafana
+>
+
