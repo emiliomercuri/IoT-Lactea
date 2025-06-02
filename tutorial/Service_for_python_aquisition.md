@@ -1,4 +1,4 @@
-# Tutorial para criar um serviço no Linux que faz aquisição do Python em background
+# Como criar um serviço Linux que roda um código Python em background
 ```bash
 sudo apt update && sudo apt upgrade
 sudo apt install -y mosquitto mosquitto-clients
