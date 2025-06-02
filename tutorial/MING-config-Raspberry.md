@@ -50,3 +50,28 @@ Por fim, reiniciar o Mosquito com o código:
 ```
 sudo systemctl restart mosquitto
 ```
+
+## Node Red Install
+Para baixar o Node Red, usar o seguinte código:
+```
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+```
+
+Redefinir o espaço do Node Red com o código:
+```
+node-red-pi --max-old-space-size=256
+```
+
+Para iniciar, parar ou reiniciar o Node Red, usar:
+```
+	node-red-start
+	node-red-stop
+	node-red-restart
+```
+Ou:
+```
+sudo systemctl enable nodered.service
+sudo systemctl disable nodered.service
+```
+
+## InfluxDB Install
