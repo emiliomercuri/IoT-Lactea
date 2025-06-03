@@ -56,6 +56,7 @@ Para baixar o Node Red, usar o seguinte código:
 ```
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 ```
+Durante a instalação do Node Red será exigido o cadastro de usuário, o qual será utilizado para acessar o ambiente no navegador.
 
 Redefinir o espaço do Node Red com o código:
 ```
@@ -129,6 +130,50 @@ sudo systemctl enable grafana-server
 sudo systemctl start grafana-server
 ```
 
+## Python Install
+Para instalar o Python, execute os seguintes comandos:
+```
+sudo apt install python3 python3-pip python3-venv
+```
+Será necessário criar um ambiente Python, mas antes de cria-lo, utilize os seguintes comandos:
+```
+sudo apt install libgpiod2
+sudo apt-get install python3-rpi.gpio
+```
+Criando um ambiente Python:
+```
+mkdir ~/dht11
+cd ~/dht11
+python3 -m venv env
+```
+Acessando o ambiente Python:
+```
+source env/bin/activate
+```
+No ambiente Python, instalar as seguintes bibliotecas:
+```
+pip3 install adafruit-circuitpython-dht
+pip3 install adafruit-circuitpython-minimqtt
+pip3 install RPI.GPIO adafruit-blinka
+```
+Ou
+```
+python3 -m pip install adafruit-circuitpython-dhtpaho-mqtt
+```
+
+## Programa Python para coleta dos dados do sensor
+Para criar o programa, dentro do ambiente Python, utilize o seguinte código para cria-lo através de um editor de texto:
+```
+nano mqtt.py
+```
+E insira o código contido na pasta: codes/mqtt-dht11.py
+Após inserir o código, salvar (CTRL+O para o nano) e fechar (CTRL+X para o nano).
+Para executar o programa, digite o seguinte código dentro do ambiente Python:
+```
+python3 mqtt.py
+```
+Para encerrar o programa, aperte CRTL+C.
+
 ## Acessando os ambientes do Node Red, InfluxDB e Grafana
 Para acessar os ambientes, abra um navegador e digite o número do IP da conexão do Raspberry Pi. Você pode encontrar o número do IP utilizando o código abaixo:
 ```
@@ -137,11 +182,71 @@ ifconfig
 
 Posterior mente, copie o código do IP e cole na aba de navegação do navegador, acrescente ":" e o número das portas de acesso para cada ambiente. Segue exemplos:
 
-> "ipNumber":1880	; para o Node Red
+> "ipNumber":1880	; para o Node Red (para fazer o login, utilizar as credenciais cadastradas durante a instalação do Node Red)
 >
 > "ipNumber":8086	; para o Influx
 >
 > "ipNumber":3000	; para o Grafana
 >
 
-## Python Install
+
+### Configuração do ambiente Node Red
+Após acessar o ambiente Node Red, você notará uma barra na lateral esquerda, com um buscador no topo e uma série de paletas para escolher. Encontre a paleta "mqtt in" e arraste-a para o espaço de trabalho.
+Feito isso, clique duas vezes sobre a paleta para acessar as configurações. No local acrescente as seguintes informações:
+> Servidor: localhost
+>
+> Tópico: dht11/sensordata
+>
+Após configurar, clicar em "Feito". Depois: encontrar a paleta "Debug", arrasta-la no ambiente de trabalho e conecta-los arrastando um fio de uma paleta até a outra. Feito isso, clicar em "Implementar"
+Caso a configuração ocorra corretamente, no canto superior direito, há o ícone para "mensagens de depuração", clique neste ícone e, enquanto o programa Python estiver em execução, os dados coletados pelo sensor aparecerão no campo abaixo deste ícone.
+
+Para instalar o Influx no ambiente Node Red, clique nas 3 barras do canto superior direito da tela e acesse o menu "Gerenciar paleta". Posteriormente, acesse o menu "Instalar" e digite o nome "influxdb". Encontrar a biblioteca vinculada ao Node Red (geralmente é a segunda na lista de exibição) e selecionar ela para instalar.
+
+Após instalada, encontre a paleta do Influx na barra de paletas da lateral esquerda e selecione a paleta "influxdb out" e arraste-a para o ambiente de trabalho. Clique duas vezes sobre ela para abrir o ambiente de configuração.
+
+No ambiente de configuração do Influx, clique no "+" o qual irá configurar o nó da seguinte forma:
+> Mudar o "Version" para 2.0
+>
+> Host: localhost
+>
+> Token: colar o token API gerado no Influx (será descrito logo abaixo)
+>
+Então clicar em "Adicionar". No menu que aparecerá, insira as seguintes informações:
+> Organization: coloque o nome da organização cadastrada no primeiro acesso do Influx.
+>
+> Bucket: o nome da pasta onde os dados serão armazenados no Influx. Neste exemplo, escolheu-se o nome "sensordata".
+>
+> Measurement: nome da pasta (neste exemplo é a pasta dht11)
+>
+Clicar em "Feito" e puxar um fio do palete do MQTT até o palete do Influx e clicar em "Implementar".
+
+### Configuração do ambiente Influx
+Após cadastrar os dados de usuário, vá em "Inicialização rápida" e o Influx pedirá para você nomear um Bucket para receber os dados. Neste exemplo, escolheu-se o nome "sensordata". Feito isso, acessar "API Token", clicar em "Generate API Token", ir na opção "All Access API Token", nomear o Token e então copiar o código exibido. Este código deverá ser inserido no campo "Token" durante a configuração do Influx no ambiente do Node Red.
+Dica: Gerar outro Token para o Grafana e utilizar os nomes de cada plataforma para nomear os Tokens para fins de organização.
+
+Após o termino da configuração do Node Red e vinculando-o com o Influx, vá para o Bucket criado para o armazenamento dos dados, neste caso é o Bucket "sensordata". Clique neste Bucket e lá você deverá encontrar a pasta "dht11" com as variáveis de coleta do sensor, neste caso: Temperatura e Umidade. Selecione a variável desejada (podem ser selecionadas ambas as variáveis) e clique em "SUBMIT". Caso a configuração esteja certa, o Influx exibirá um gráfico com a variável selecionada.
+
+Neste mesmo ambiente, para a varável selecionada, clique em "SCRIPT EDITOR". Aparecerá um script logo abaixo do gráfico. Este scrip será utilizado para configurar o Grafana. Guarde-o!
+
+### Configuração do ambiente Grafana
+Para acessar o ambiente Grafana, utilize as credenciais:
+> Login: admin
+>
+> senha: admin
+>
+Após entrar, o Grafana exigirá que você escolha uma nova senha. Feito isso, você será redirecionado para a página principal, onde deve selecionar "Data Source" e nas opções exibidas, selecionar "InfluxDB". No formulário que aparecerá, você deve cadastrar os dados sugeridos:
+> Query Lenguage: selecionar "Flux"
+>
+> HTTP -> URL: http://"ipNumber":8086
+>
+> InfluxDB Details: preencher os ítens "Organization", "Token" e "Default Bucket" com os mesmo dados cadastrado no Influx e deve ser utilizado o Token gerado no API Token para o Grafana.
+>
+Feito isso, clicar em "Save & test".
+
+Então, vá para "Dashboards", depois clique em "Create dashboard", acesse "Add visualization" e em "Select data source" escolha Influxdb. Caso ocorra tudo certo, no ambiente em que será exibido, haverá um script, logo abaixo do espaço onde será exibido o gráfico. Neste local, cole o script copiado do Influx. A ultima linha do script: "|>.yield(name: "mean")", pode ser excluida.
+Após vá para "Query inspector" e clique em "Refresh". No ambiente que aparecerá, você poderá detalhar o nome do gráfico e outras descrições. Feito isso, clique em "Save dashboard", adicione um Título e clique em "Save".
+
+Agora, no menu "Dashboards", no ítem "Add" e depois "Visualization" é possível criar outros gráficos.
+
+
+
