@@ -15,7 +15,7 @@ cd ~/dht11
 source env/bin/activate
 python3 mqtt.py
 ```
-Nesse caso, a pasta contendo o script é "dht11", e "mqtt" é um programa em Python que realiza a coleta dos dados (faça alterações conforme sua necessidade). Após isso, salve as alterções utilizando "Ctrl + S" e saia do editor usando "Ctrl + Q"
+Nesse caso, a pasta contendo o script é "**dht11**", e "**mqtt**" é um programa em Python que realiza a coleta dos dados (faça alterações conforme sua necessidade). Após isso, salve as alterções utilizando "**Ctrl + S**" e saia do editor com "**Ctrl + Q**"
 
 Agora, para dar permissão total de execução do script, digite no terminal:
 ```bash
@@ -44,7 +44,7 @@ User=usuario
 [Install]
 WantedBy=multi-user.target
 ```
-Aqui, "dht11" é o nome do sensor exemplo, e "/home/usuario/dht11/aquisicao_dht11.sh" é o endereço onde está localizado o Shell Script criado anteriormente. No seu caso, altere essas informações conforme necessário, salve as modificações no editor e volte ao terminal.
+Aqui, "**dht11**" é o nome do sensor exemplo, e "**/home/usuario/dht11/aquisicao_dht11.sh**" é o endereço onde está localizado o Shell Script criado anteriormente. No seu caso, altere essas informações conforme necessário, salve as modificações no editor e volte ao terminal.
 
 ## Registrar e habilitar o serviço
 
