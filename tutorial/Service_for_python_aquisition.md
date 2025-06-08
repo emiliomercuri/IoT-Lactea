@@ -60,7 +60,7 @@ Agora, reinicie o sistema:
 ```bash
 sudo reboot
 ```
-Então, verifique se o serviço foi habilitado automaticamente.
+Após a reinicialização, verifique se o serviço foi habilitado automaticamente:
 ```bash
 sudo systemctl status myscript_dht11.service
 ```
