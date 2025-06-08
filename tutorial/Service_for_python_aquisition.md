@@ -4,7 +4,7 @@ Para criar um serviço no sistema operacional Linux que execute um Shell Script 
 
 ## Criar um Shell Script executável
 
-Dentro de uma pasta de sua preferência, crie o script que conterá o código Python. Aqui será utilizado o sensor de umidade e temperatura DHT11 como exemplo para coleta de dados:
+Dentro de uma pasta de sua preferência, crie o script que conterá o código Python. Aqui será utilizado um código que realiza a coleta de dados do sensor DHT11 como exemplo:
 ```bash
 micro aquisicao_dht11.sh
 ```
