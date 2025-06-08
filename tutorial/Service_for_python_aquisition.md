@@ -5,5 +5,6 @@ https://www.youtube.com/watch?v=0mluq0oJk7o&t=373s&ab_channel=IoTFrontier
 
 Configurar o Raspberry Pi 3 ou 4 com o sistema operacional Raspberry Pi OS (64bits).
 
-![teste](C:\Users\Daniel\Desktop\aa.png)
 
+
+![aa](https://github.com/user-attachments/assets/09e959f9-08b0-485f-ad84-8c869bfdae06)
