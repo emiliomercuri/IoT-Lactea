@@ -2,15 +2,22 @@
 
 Para criar um serviço no sistema operacional Linux que execute um Shell Script na inicialização, siga estas etapas:
 
-## Criando um Shell Script executável
+## Criar um Shell Script executável
 
-Pimeiro, criamos o Script que contém o código Python:
+Dentro de uma pasta, crie o script que conterá o código Python. Aqui será utilizado o sensor de umidade e temperatura DHT11 como exemplo para coleta de dados:
 
-```
+```bash
 micro aquisicao_dht11.sh
 ```
 
+Dentro do editor Micro, escreva os seguintes comandos:
 
+```bash
+cd ~/dht11
+source env/bin/activate
+python3 mqtt.py
+```
 
+Nesse caso, a pasta contendo o script é "dht11", e "mqtt" é o programa em Python que realiza a coleta dos dados.
 
-
+Após isso, salve as alterções utilizando "Ctrl + S", e saia do editor usando "Ctrl + Q"
