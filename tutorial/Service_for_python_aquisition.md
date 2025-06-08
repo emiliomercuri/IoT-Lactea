@@ -18,6 +18,12 @@ source env/bin/activate
 python3 mqtt.py
 ```
 
-Nesse caso, a pasta contendo o script é "dht11", e "mqtt" é o programa em Python que realiza a coleta dos dados.
+Nesse caso, a pasta contendo o script é "dht11", e "mqtt" é um programa em Python que realiza a coleta dos dados. Após isso, salve as alterções utilizando "Ctrl + S" e saia do editor usando "Ctrl + Q"
 
-Após isso, salve as alterções utilizando "Ctrl + S", e saia do editor usando "Ctrl + Q"
+Para dar permissão total de execução do script, rode:
+
+```bash
+chmod 777 aquisicao_dht11.sh
+```
+
+
