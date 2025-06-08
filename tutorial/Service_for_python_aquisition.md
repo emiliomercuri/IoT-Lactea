@@ -6,7 +6,7 @@ Para criar um serviço no sistema operacional Linux que execute um Shell Script 
 
 Pimeiro, criamos o Script que contém o código Python:
 
-```bash
+```
 micro aquisicao_dht11.sh
 ```
 
