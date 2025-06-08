@@ -28,7 +28,7 @@ Utilizando o editor micro, crie o serviço personalizado:
 ```bash
 sudo micro /etc/systemd/system/myscript_dht11.service
 ```
-Utilize as seguintes linhas de código dentro do editor.
+Utilize as seguintes linhas de código dentro do editor:
 
 ```bash
 [Unit]
