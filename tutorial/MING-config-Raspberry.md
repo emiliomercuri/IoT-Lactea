@@ -81,13 +81,11 @@ sudo systemctl disable nodered.service
 ## InfluxDB Install
 Para baixar o Influx, executar os seguintes códigos:
 ```
-curl https://repos.influxdata.com/influxdata-archive.key | gpg --dearmor | sudo tee /usr/share/keyrings/influ
-xdb-archive-keyring.gpg >/dev/null
+curl https://repos.influxdata.com/influxdata-archive.key | gpg --dearmor | sudo tee /usr/share/keyrings/influxdb-archive-keyring.gpg >/dev/null
 ```
 E
 ```
 echo "deb [signed-by=/usr/share/keyrings/influxdb-archive-keyring.gpg] https://repos.influxdata.com/debian stable main" | sudo tee /etc/apt/sources.list.d/influxdb.list
-deb [signed-by=/usr/share/keyrings/influxdb-archive-keyring.gpg] https://repos.influxdata.com/debian stable main
 ```
 
 Atuzalizar os pacotes com:
