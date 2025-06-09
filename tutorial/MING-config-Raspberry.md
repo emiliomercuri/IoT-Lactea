@@ -156,6 +156,7 @@ No ambiente Python, instalar as seguintes bibliotecas:
 pip3 install adafruit-circuitpython-dht
 pip3 install adafruit-circuitpython-minimqtt
 pip3 install RPI.GPIO adafruit-blinka
+pip3 install paho.mqtt
 ```
 Ou
 ```
