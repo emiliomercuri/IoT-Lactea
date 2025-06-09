@@ -2,6 +2,11 @@
 
 Para criar um serviço no sistema operacional Linux que execute um Shell Script na inicialização, siga estas etapas:
 
+Caso não tenha instalado o programa `micro` basta instalar com o seguinte código na linha de comando:
+```bash
+sudo apt install micro
+```
+
 ## Criar um Shell Script executável
 
 Dentro de uma pasta de sua preferência, crie o script que conterá o código Python (aqui será utilizado um código que realiza a coleta de dados do sensor DHT11 como exemplo):
