@@ -204,8 +204,6 @@ Para instalar o Influx no ambiente Node Red, clique nas 3 barras do canto superi
 
 Após instalada, encontre a paleta do Influx na barra de paletas da lateral esquerda e selecione a paleta "influxdb out" e arraste-a para o ambiente de trabalho. Clique duas vezes sobre ela para abrir o ambiente de configuração.
 
-![images/Node Red_scheme.PNG](https://github.com/emiliomercuri/MING-Lactea/blob/00eb69bf35b5b9a532b15ab3e25eab460b39a6af/images/Node%20Red_scheme.PNG "Exemplo de um flow em Node Red")
-
 No ambiente de configuração do Influx, clique no "+" o qual irá configurar o nó da seguinte forma:
 > Mudar o "Version" para 2.0
 >
@@ -220,7 +218,9 @@ Então clicar em "Adicionar". No menu que aparecerá, insira as seguintes inform
 >
 > Measurement: nome da pasta (neste exemplo é a pasta dht11)
 >
-Clicar em "Feito" e puxar um fio do palete do MQTT até o palete do Influx e clicar em "Implementar".
+Clicar em "Feito" e puxar um fio do palete do MQTT até o palete do Influx e clicar em "Implementar". A organização do fluxo deve ficar semelhante a figura a baixo.
+
+![images/Node Red_scheme.PNG](https://github.com/emiliomercuri/MING-Lactea/blob/00eb69bf35b5b9a532b15ab3e25eab460b39a6af/images/Node%20Red_scheme.PNG "Exemplo de um flow em Node Red")
 
 ### Configuração do ambiente Influx
 Após cadastrar os dados de usuário, vá em "Inicialização rápida" e o Influx pedirá para você nomear um Bucket para receber os dados. Neste exemplo, escolheu-se o nome "sensordata". Feito isso, acessar "API Token", clicar em "Generate API Token", ir na opção "All Access API Token", nomear o Token e então copiar o código exibido. Este código deverá ser inserido no campo "Token" durante a configuração do Influx no ambiente do Node Red.
