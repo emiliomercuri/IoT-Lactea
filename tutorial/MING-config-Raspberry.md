@@ -204,6 +204,8 @@ Para instalar o Influx no ambiente Node Red, clique nas 3 barras do canto superi
 
 Após instalada, encontre a paleta do Influx na barra de paletas da lateral esquerda e selecione a paleta "influxdb out" e arraste-a para o ambiente de trabalho. Clique duas vezes sobre ela para abrir o ambiente de configuração.
 
+![images/Node Red_scheme.PNG](https://github.com/emiliomercuri/MING-Lactea/blob/00eb69bf35b5b9a532b15ab3e25eab460b39a6af/images/Node%20Red_scheme.PNG "Exemplo de um flow em Node Red")
+
 No ambiente de configuração do Influx, clique no "+" o qual irá configurar o nó da seguinte forma:
 > Mudar o "Version" para 2.0
 >
