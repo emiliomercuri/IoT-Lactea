@@ -166,7 +166,7 @@ Para criar o programa, dentro do ambiente Python, utilize o seguinte código par
 ```
 nano mqtt.py
 ```
-E insira o código contido na pasta: codes/mqtt-dht11.py
+E insira o código contido na pasta: [codes/mqtt-dht11.py](https://github.com/emiliomercuri/MING-Lactea/blob/main/codes/mqtt-dht11.py)
 Após inserir o código, salvar (CTRL+O para o nano) e fechar (CTRL+X para o nano).
 Para executar o programa, digite o seguinte código dentro do ambiente Python:
 ```
