@@ -56,7 +56,9 @@ Para baixar o Node Red, usar o seguinte código:
 ```
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 ```
-Durante a instalação do Node Red será exigido o cadastro de usuário, o qual será utilizado para acessar o ambiente no navegador.
+Durante a instalação do Node Red será exigido o cadastro de usuário, o qual será utilizado para acessar o ambiente no navegador. Neste caso foi utilizado as seguintes credenciais:
+> Usuário: Pi
+> Senha: iotempire
 
 Redefinir o espaço do Node Red com o código:
 ```
@@ -223,6 +225,10 @@ Clicar em "Feito" e puxar um fio do palete do MQTT até o palete do Influx e cli
 ![images/Node Red_scheme.PNG](https://github.com/emiliomercuri/MING-Lactea/blob/00eb69bf35b5b9a532b15ab3e25eab460b39a6af/images/Node%20Red_scheme.PNG "Exemplo de um flow em Node Red")
 
 ### Configuração do ambiente Influx
+Credenciais de entrada:
+> Usuário: Lactea
+> Senha: iotempire
+
 Após cadastrar os dados de usuário, vá em "Inicialização rápida" e o Influx pedirá para você nomear um Bucket para receber os dados. Neste exemplo, escolheu-se o nome "sensordata". Feito isso, acessar "API Token", clicar em "Generate API Token", ir na opção "All Access API Token", nomear o Token e então copiar o código exibido. Este código deverá ser inserido no campo "Token" durante a configuração do Influx no ambiente do Node Red.
 Dica: Gerar outro Token para o Grafana e utilizar os nomes de cada plataforma para nomear os Tokens para fins de organização.
 
@@ -235,7 +241,8 @@ Para acessar o ambiente Grafana, utilize as credenciais:
 > Login: admin
 >
 > senha: admin
->
+> senha redefinida: iotempire
+> 
 Após entrar, o Grafana exigirá que você escolha uma nova senha. Feito isso, você será redirecionado para a página principal, onde deve selecionar "Data Source" e nas opções exibidas, selecionar "InfluxDB". No formulário que aparecerá, você deve cadastrar os dados sugeridos:
 > Query Lenguage: selecionar "Flux"
 >
