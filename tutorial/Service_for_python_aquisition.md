@@ -77,6 +77,7 @@ sudo systemctl status myscript_dht11.service
 ```
 Se o seviço estiver habilitado, você obterá uma resposta semelhante a esta:
 >myscript_dht11.service - Run my dht11 acquisition script at boot
+>
 >Loaded: loaded (/etc/systemd/system/myscript_dht11.service; enabled; preset: enabled)
 >
 >Active: active (running) since Mon 2025-06-09 17:17:13 BST; 1 day 9h ago
