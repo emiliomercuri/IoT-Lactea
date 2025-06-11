@@ -24,7 +24,6 @@ Nesse caso, a pasta contendo o script é "**dht11**", e "**mqtt**" é um program
 
 Agora, para dar permissão total de execução do script, digite no terminal:
 ```bash
-#!/bin/bash
 chmod 777 aquisicao_dht11.sh
 ```
 ## Criar o seviço no systemd
