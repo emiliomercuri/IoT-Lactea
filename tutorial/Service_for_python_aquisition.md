@@ -88,7 +88,7 @@ Se o seviço estiver habilitado, a seguinte mensagem aparecerá:
 >
 >CGroup: /system.slice/myscript_dht11.service
 >
->├─615 /bin/bash /home/grupo4/dht11/aquisicao_dht11.sh
+>├─615 /bin/bash /home/usuario/dht11/aquisicao_dht11.sh
 >
 >├─625 python3 mqtt.py
 >
