@@ -75,12 +75,12 @@ sudo systemctl status myscript_dht11.service
 ```
 Se o seviço estiver habilitado, a seguinte mensagem aparecerá:
 >myscript_dht11.service - Run my dht11 acquisition script at boot
-     Loaded: loaded (/etc/systemd/system/myscript_dht11.service; enabled; preset: enabled)
-     Active: active (running) since Mon 2025-06-09 17:17:13 BST; 1 day 9h ago
-   Main PID: 615 (aquisicao_dht11)
-      Tasks: 5 (limit: 759)
-        CPU: 55.799s
-     CGroup: /system.slice/myscript_dht11.service
-             ├─615 /bin/bash /home/grupo4/dht11/aquisicao_dht11.sh
-             ├─625 python3 mqtt.py
-             └─788 /home/grupo4/dht11/env/lib/python3.11/site-packages/adafruit_blinka/microcontroller/bcm283x/pulseio/libgpiod_pulsein64 --pulses 81 --queue 20584 -i gpiochip0 4
+     >Loaded: loaded (/etc/systemd/system/myscript_dht11.service; enabled; preset: enabled)
+     >Active: active (running) since Mon 2025-06-09 17:17:13 BST; 1 day 9h ago
+   >Main PID: 615 (aquisicao_dht11)
+      >Tasks: 5 (limit: 759)
+        >CPU: 55.799s
+     >CGroup: /system.slice/myscript_dht11.service
+             >├─615 /bin/bash /home/grupo4/dht11/aquisicao_dht11.sh
+             >├─625 python3 mqtt.py
+             >└─788 /home/grupo4/dht11/env/lib/python3.11/site-packages/adafruit_blinka/microcontroller/bcm283x/pulseio/libgpiod_pulsein64 --pulses 81 --queue 20584 -i gpiochip0 4
