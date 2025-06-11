@@ -66,9 +66,6 @@ Faça com que o serviço seja iniciado agora:
 ```bash
 sudo systemctl start myscript_dht11.service
 ```
-```ini
-sudo systemctl start myscript_dht11.service
-```
 
 Agora, reinicie o sistema:
 ```bash
