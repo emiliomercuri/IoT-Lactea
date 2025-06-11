@@ -12,7 +12,14 @@ Nesse tutorial será mostrado como fazer a aquisição dos dados de temperatura 
 
 As etapas são:
 
-1. Conexões Físicas
+1. Conexões Físicas:
+
 Imagem e diagrama do Fritzing
 
 2. Instalação do sistema operacional 
+
+Raspberry Pi OS (64-bit) - Debian Linux
+
+3. MQTT, Influxdb, Node-Red e Grafana (MING Stack)
+
+   
