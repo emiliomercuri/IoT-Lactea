@@ -20,6 +20,10 @@ Imagem e diagrama do Fritzing
 
 Raspberry Pi OS (64-bit) - Debian Linux
 
+Configurar:
+- Usuário: lactea
+- Senha: iot*****r
+
 3. MQTT, Influxdb, Node-Red e Grafana (MING Stack)
 
    
