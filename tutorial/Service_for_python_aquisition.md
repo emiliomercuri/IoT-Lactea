@@ -35,7 +35,7 @@ sudo micro /etc/systemd/system/myscript_dht11.service
 ```
 Utilize as seguintes linhas de código dentro do editor:
 
-```bash
+```ini
 [Unit]
 Description=Run my dht11 acquisition script at boot
 After=network.target
