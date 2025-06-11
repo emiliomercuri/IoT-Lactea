@@ -1,6 +1,6 @@
 # Tutorial para aquição dos dados do sensor DHT11 no Raspberry Pi e criação de um dashboard no Grafana
 
-Nesse tutorial será mostrado como fazer a aquisição dos dados de temperatura do ar e umidade relativa do ar usando o sensor DHT11 conectado no microcomputador Raspberry Pi 4.
+Nesse tutorial será mostrado como fazer a aquisição dos dados de temperatura do ar e umidade relativa do ar usando o sensor DHT11 conectado no microcomputador Raspberry Pi 3B+.
 
 ---
 
@@ -10,3 +10,9 @@ Nesse tutorial será mostrado como fazer a aquisição dos dados de temperatura 
 
 ---
 
+As etapas são:
+
+1. Conexões Físicas
+Imagem e diagrama do Fritzing
+
+2. Instalação do sistema operacional 
