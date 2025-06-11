@@ -57,6 +57,9 @@ Para atualizar os serviços do systemd, no terminal, rode:
 ```bash
 sudo systemctl daemon-reload
 ```
+```ini
+sudo systemctl daemon-reload
+```
 Faça com que o serviço seja iniciado com o sistema operacional:
 ```bash
 sudo systemctl enable myscript_dht11.service
