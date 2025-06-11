@@ -18,11 +18,15 @@ Imagem e diagrama do Fritzing
 
 2. Instalação do sistema operacional 
 
-Raspberry Pi OS (64-bit) - Debian Linux
+Num cartão de memória instalar o sistema operacional Raspberry Pi OS (64-bit) - Debian Linux.
 
 Configurar:
 - Usuário: lactea
 - Senha: iot******r
+
+### Conexão remota
+
+Raspberry Connect e Netbird 
 
 3. MQTT, Influxdb, Node-Red e Grafana (MING Stack)
 
