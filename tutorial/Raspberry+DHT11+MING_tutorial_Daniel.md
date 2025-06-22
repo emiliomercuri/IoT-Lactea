@@ -103,3 +103,15 @@ Aguarde até que todas as ações sejam realizadas. Apos um momento, você terá
 ![12](https://github.com/user-attachments/assets/c13195f6-93f8-415e-a26b-087863eaee18)
 
 - Para criar um arquivo de configuração, aperte a tecla "Enter"
+- O compartilhamento de dados de usuário é opcional
+- Quando perguntado sobre configurar a segurança de usuário, selecione "Yes"
+- Insira um nome de usuário e senha para o Node-RED
+- Sobre a permissão de usuário, selecione "full acess"
+- Responda "No" para a criação de um outro usuário
+- Recuse o recurso Projects
+- A respeito da configuração do Flow File, aperte a tecla "Enter" duas vezes
+
+![13](https://github.com/user-attachments/assets/3dbb5ded-9240-4096-b1a8-25e6eed12936)
+
+- Nas configurações de editor, selecione a opção "default" duas vezes
+- Por fim, selecione "Yes" para permitir que nós de função carreguem módulos externos
