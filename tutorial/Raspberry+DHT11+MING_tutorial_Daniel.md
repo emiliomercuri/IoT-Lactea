@@ -85,3 +85,21 @@ Para salvar as alterações, aperte “Ctrl + S” e para sair do editor de text
 ```bash
 sudo systemctl restart mosquitto
 ```
+
+### Instalação do Node-RED:
+
+Como uma forma rápida de instalar o Node-RED e o Node.js no Linux, usamos um script hospedado na internet escrevendo o seguinte código na linha de comando:
+
+```bash
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+```
+
+Digite "y" para todas as perguntas que aparecerem. Uma tela como essa deverá ser aberta:
+
+![7](https://github.com/user-attachments/assets/6ed31260-14bf-479d-80bd-6a9627e89de0)
+
+Aguarde até que todas as ações sejam realizadas. Apos um momento, você terá que realizar algumas configurações:
+
+![12](https://github.com/user-attachments/assets/c13195f6-93f8-415e-a26b-087863eaee18)
+
+- Para criar um arquivo de configuração, aperte a tecla "Enter"
