@@ -234,6 +234,15 @@ ifconfig
 
 A seguinte resposta deverá apacerer. No meu caso, a conexão do Rasbperry Pi está sendo feita por cabo, e o endereço que vou usar está destacado em vermelho:
 
-![18](https://github.com/user-attachments/assets/eabfde65-e05f-4dc4-9d6b-74eeb3d3c03d)
+![18](https://github.com/user-attachments/assets/4fab2932-9a36-450f-a4ca-04cde120636a)
+
+Agora, utilizando um navegador web, é possível acessar o Node-RED utilizando o endereço de IP, acrescentando ":" e o número da porta de acesso 1880 na barra de busca:
+
+> http://192.168.1.22:1880
+
+Um site como esse deverá se abrir, e você terá que adicionar suas credenciais configuradas no passo anterior:
+
+![19](https://github.com/user-attachments/assets/5391a8e1-a646-42c3-a3e2-2e0570020151)
+
 
 
