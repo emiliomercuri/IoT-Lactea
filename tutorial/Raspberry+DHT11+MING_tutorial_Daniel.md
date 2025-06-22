@@ -80,7 +80,7 @@ Agora, adicione no final desse arquivo as segunites linhas:
 > 
 > allow_anonymous true
 
-Para salvar as alterações, aperte “Ctrl + S” e para sair do editor de texto, use “Ctrl + Q”. Isso feito, precisamos reiniciar o Mosquitto para garantir que as modificações sejam aplicadas rodando na linha de comando:
+Para salvar as alterações, aperte “Ctrl + S” e, para sair do editor de texto, use “Ctrl + Q”. Isso feito, precisamos reiniciar o Mosquitto para garantir que as modificações sejam aplicadas rodando na linha de comando:
 
 ```bash
 sudo systemctl restart mosquitto
@@ -145,3 +145,71 @@ Para adicionar o repositório oficial da InfluxData (InfluxDB, Telegraf, etc.) a
 ```bash
 echo "deb [signed-by=/usr/share/keyrings/influxdb-archive-keyring.gpg] https://repos.influxdata.com/debian stable main" | sudo tee /etc/apt/sources.list.d/influxdb.list
 ```
+
+Agora, usamos o seguinte comando para encontrar a última versão versão do InfluxDB no repositório:
+
+```bash
+sudo apt update
+```
+
+Isso feito, podemos instalar o InfluxDB2 com o seguinte código:
+
+```bash
+sudo apt install influxdb2
+```
+
+Após instalado, para desbloquear o serviço ```influxdb``` e permitir que ele seja iniciado ou habilitado normalmente, rode:
+
+```bash
+sudo systemctl unmask influxdb
+```
+
+Para configurar o serviço do InfluxDB para iniciar automaticamente toda vez que o sistema for ligado, use o comando:
+
+```bash
+sudo systemctl enable influxdb
+```
+
+Agora, para iniciar o InfluxDB como um serviço, use:
+
+```bash
+sudo systemctl start influxdb
+```
+
+### Instalação do Grafana:
+
+Para baixar e armazenar com segurança a chave GPG do repositório oficial do Grafana, use o seguinte código da linha de comando:
+
+```bash
+curl https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/grafana-archive-keyrings.gpg >/dev/null
+```
+
+Então, para adicionar o repositório oficial do Grafana ao gerenciador de pacotes APT, rode:
+
+```bash
+echo "deb [signed-by=/usr/share/keyrings/grafana-archive-keyrings.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+```
+
+Agora, atualizamos novamente o sistema APT usando:
+
+```bash
+sudo apt update
+```
+
+Podemos agora instalar o Grafana rodando:
+
+```bash
+sudo apt install grafana
+```
+
+Pressione "y" para confirmar a instalação, que poderá levar um certo tempo. Uma vez instalado, usamos o seguinte comando para que o Grafana seja iniciado junto com o sistema operacional:
+
+```bash
+sudo systemctl enable grafana-server
+``
+
+Por fim, podemos iniciar o Grafana imediatamente utilizando:
+
+```bash
+sudo systemctl start grafana-server
+``
