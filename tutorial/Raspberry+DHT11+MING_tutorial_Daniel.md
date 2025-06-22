@@ -40,7 +40,7 @@ sudo apt update && sudo apt upgrade
 
 Digite "y" para confirmar a instalação, que poderá demorar alguns instantes.
 
-### Instalação do MQTT:
+### Instalação do MQTT
 
 Uma vez que seu sistema foi atualizado, podemos instalar o Mosquitto MQTT Broker, que é um servidor que gerencia mensagens usando o protocolo MQTT (Message Queuing Telemetry Transport), através do seguinte comando:
 
@@ -86,7 +86,7 @@ Para salvar as alterações, aperte “Ctrl + S” e, para sair do editor de tex
 sudo systemctl restart mosquitto
 ```
 
-### Instalação do Node-RED:
+### Instalação do Node-RED
 
 Como uma forma rápida de instalar o Node-RED e o Node.js no Linux, usamos um script hospedado na internet escrevendo o seguinte código na linha de comando:
 
@@ -139,7 +139,7 @@ Finalmente, use o seguinte código para iniciar o Node-RED automaticamente toda 
 sudo systemctl enable nodered.service
 ```
 
-### Instalação do InfluxDB:
+### Instalação do InfluxDB
 
 Para baixar, converter e instalar a chave pública do repositório da InfluxData no seu Raspberry Pi, utilize o seguinte código na linha de comando:
 
@@ -182,7 +182,7 @@ Agora, para iniciar o InfluxDB como um serviço, use:
 sudo systemctl start influxdb
 ```
 
-### Instalação do Grafana:
+### Instalação do Grafana
 
 Para baixar e armazenar com segurança a chave GPG do repositório oficial do Grafana, use o seguinte código da linha de comando:
 
@@ -218,8 +218,22 @@ Por fim, podemos iniciar o Grafana imediatamente utilizando:
 
 ```bash
 sudo systemctl start grafana-server
-``
+```
 
 ## Configuração do Node-RED, InfluxDB e Grafana
 
 Acabamos de realizar a instalação de todas as quatro ferramentas necessárias para criar nosso Dashboard. Agora, precisamos configurar cada uma dessas ferramentas.
+
+### Configuração do Node-RED
+
+Para iniciar, precisaremos do endereço de IP "wlan0" (caso sua conexão de internet seja por wi-fi) ou "eth0" (caso sua conexão seja cabeada), que podem ser obtidos usando o código:
+
+```bash
+ifconfig
+```
+
+A seguinte resposta deverá apacerer. No meu caso, a conexão do Rasbperry Pi está sendo feita por cabo, e o endereço que vou usar está destacado em vermelho:
+
+![18](https://github.com/user-attachments/assets/eabfde65-e05f-4dc4-9d6b-74eeb3d3c03d)
+
+
