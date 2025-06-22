@@ -60,10 +60,27 @@ Agora, para checar o status do Mosquitto, rode:
 mosquitto -v
 ```
 
-O que deverá retornar a geguinte mensagem:
+O que deverá retornar o seguinte:
 
 ![5](https://github.com/user-attachments/assets/20fb2900-38a6-46a5-9284-cae5df662150)
 
+A mensagem “Error: Address already in use” significa que o software está funcionando. Agora, para configurar a porta de comunicação do Mosquito como sendo a porta 1883, deve ser editado o arquivo "mosquitto.conf", utilizando o código:
 
+```bash
+sudo micro /etc/mosquitto/mosquitto.conf
+```
 
+Uma tela como essa deverá se abrir:
 
+![6](https://github.com/user-attachments/assets/59ceb53d-1d96-455a-b392-4e5fb5695609)
+
+Agora, adicione no final desse arquivo as segunites linhas:
+
+> listener 1883
+> allow_anonymous true
+
+Para salvar as alterações, aperte “Ctrl + S” e para sair do editor de texto, use “Ctrl + Q”. Isso feito, precisamos reiniciar o Mosquitto para garantir que as modificações sejam aplicadas rodando na linha de comando:
+
+```bash
+sudo systemctl restart mosquitto
+```
