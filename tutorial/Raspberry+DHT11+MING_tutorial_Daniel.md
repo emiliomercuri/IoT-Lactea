@@ -236,13 +236,27 @@ A seguinte resposta deverá apacerer. No meu caso, a conexão do Rasbperry Pi es
 
 ![18](https://github.com/user-attachments/assets/4fab2932-9a36-450f-a4ca-04cde120636a)
 
-Agora, utilizando um navegador web, é possível acessar o Node-RED utilizando o endereço de IP, acrescentando ":" e o número da porta de acesso 1880 na barra de busca:
+Agora, utilizando um navegador web, é possível acessar o Node-RED utilizando o endereço de IP, acrescentando ":" e o número da porta de acesso "1880" na barra de busca:
 
 > http://192.168.1.22:1880
 
-Um site como esse deverá se abrir, e você terá que adicionar suas credenciais configuradas no passo anterior:
+Um site como esse deverá se abrir, e você terá que adicionar suas credenciais configuradas na instalação do Node-RED:
 
 ![19](https://github.com/user-attachments/assets/5391a8e1-a646-42c3-a3e2-2e0570020151)
+
+### Configuração do InfluxDB
+
+Para acessar o InfluxDB através do seu navegador, utilize na barra de busca o seu endereço de IP, acrescido de ":" e o número "8086". Em seguida, clique em "GET STARTED", e preencha as informações:
+
+![21](https://github.com/user-attachments/assets/7f0e6c80-6fc2-4146-98a3-170c284b87b9)
+
+Aqui, você deverá inserir:
+
+> Nome de usuário e senha, para acessar ferramenta;
+>
+> Nome inicial da organização;
+>
+> Nome inicial do Bucket, que é onde seus dados serão armazenados. Aqui se escolheu o nome "sensordata" por simplicidade.
 
 
 
