@@ -12,11 +12,11 @@ Nesse tutorial será mostrado como fazer a aquisição dos dados de temperatura 
 
 As etapas são:
 
-1. Conexões Físicas:
+## 1. Conexões Físicas:
 
 Imagem e diagrama do Fritzing
 
-2. Instalação do sistema operacional 
+## 2. Instalação do sistema operacional 
 
 Num cartão de memória instalar o sistema operacional Raspberry Pi OS (64-bit) - Debian Linux.
 
@@ -24,10 +24,15 @@ Configurar:
 - Usuário: lactea
 - Senha: iot******r
 
-### Conexão remota
+## 3. Conexão remota
 
 Raspberry Connect e Netbird 
 
-3. MQTT, Influxdb, Node-Red e Grafana (MING Stack)
+## 4. MQTT, Influxdb, Node-Red e Grafana (MING Stack)
 
+* Explicar brevemente o que é o MING Stack e seu princípio de funcionamento
+
+Para começar, precisamos installar todos os softwares necessários um por um.
+
+### Instalação
    
