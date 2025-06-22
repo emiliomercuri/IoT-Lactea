@@ -28,7 +28,7 @@ Configurar:
 
 Raspberry Connect e Netbird 
 
-## 4. MQTT, Influxdb, Node-Red e Grafana (MING Stack)
+## 4. Instalação do MQTT, Influxdb, Node-Red e Grafana (MING Stack)
 
 * Explicar brevemente o que é o MING Stack e seu princípio de funcionamento
 
@@ -133,6 +133,12 @@ node-red-start
 
 Agora, mesmo se você usar "Ctrl + C", o software ainda estará rodando no background.
 
+Finalmente, use o seguinte código para iniciar o Node-RED automaticamente toda vez que o sistema for ligado:
+
+```bash
+sudo systemctl enable nodered.service
+```
+
 ### Instalação do InfluxDB:
 
 Para baixar, converter e instalar a chave pública do repositório da InfluxData no seu Raspberry Pi, utilize o seguinte código na linha de comando:
@@ -213,3 +219,7 @@ Por fim, podemos iniciar o Grafana imediatamente utilizando:
 ```bash
 sudo systemctl start grafana-server
 ``
+
+## Configuração do Node-RED, InfluxDB e Grafana
+
+Acabamos de realizar a instalação de todas as quatro ferramentas necessárias para criar nosso Dashboard. Agora, precisamos configurar cada uma dessas ferramentas.
