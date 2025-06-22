@@ -96,28 +96,52 @@ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/mast
 
 Digite "y" para todas as perguntas que aparecerem. Uma tela como essa deverá ser aberta:
 
-
 ![7](https://github.com/user-attachments/assets/6ed31260-14bf-479d-80bd-6a9627e89de0)
-
 
 Aguarde até que todas as ações sejam realizadas. Apos um momento, você terá que realizar algumas configurações:
 
-
 ![12](https://github.com/user-attachments/assets/c13195f6-93f8-415e-a26b-087863eaee18)
 
-
-> - Para criar um arquivo de configuração, aperte a tecla "Enter"
-> - O compartilhamento de dados de usuário é opcional
-> - Quando perguntado sobre configurar a segurança de usuário, selecione "Yes"
-> - Insira um nome de usuário e senha para o Node-RED
-> - Sobre a permissão de usuário, selecione "full acess"
-> - Responda "No" para a criação de um outro usuário
-> - Recuse o recurso Projects
-> - A respeito da configuração do Flow File, aperte a tecla "Enter" duas vezes
-
+> - Para criar um arquivo de configuração, aperte a tecla "Enter";
+> - O compartilhamento de dados de usuário é opcional;
+> - Quando perguntado sobre configurar a segurança de usuário, selecione "Yes";
+> - Insira um nome de usuário e senha para o Node-RED;
+> - Sobre a permissão de usuário, selecione "full acess";
+> - Responda "No" para a criação de um outro usuário;
+> - Recuse o recurso Projects;
+> - A respeito da configuração do Flow File, aperte a tecla "Enter" duas vezes;
 
 ![13](https://github.com/user-attachments/assets/3dbb5ded-9240-4096-b1a8-25e6eed12936)
 
+> - Nas configurações de editor, selecione a opção "default" duas vezes;
+> - Por fim, selecione "Yes" para permitir que nós de função carreguem módulos externos.
 
-> - Nas configurações de editor, selecione a opção "default" duas vezes
-> - Por fim, selecione "Yes" para permitir que nós de função carreguem módulos externos
+Se todos os passos foram seguidos, a instalação foi concluída. Agora, para evitar que o Node-RED consuma toda a RAM e deixe o sistema lento, limitamos a memória a 256 MB com o seguinte comando:
+
+```bash
+node-red-pi --max-old-space-size=256
+```
+Você deverá obter a seguinte resposta:
+
+![14](https://github.com/user-attachments/assets/3d40eb14-58f0-4a90-88a9-c9f6021fd150)
+
+Aqui, é possível verificar que o Node-RED está rodando sob o host local na porta 1880. Para prosseguir, pare o andamento do software com "Ctrl + C" e, para iniciar o Node-RED como um serviço, use o comando:
+
+```bash
+node-red-start
+```
+
+Agora, mesmo se você usar "Ctrl + C", o software ainda estará rodando no background.
+
+### Instalação do InfluxDB:
+
+Para baixar, converter e instalar a chave pública do repositório da InfluxData no seu Raspberry Pi, utilize o seguinte código na linha de comando:
+
+```bash
+curl https://repos.influxdata.com/influxdata-archive.key | gpg --dearmor | sudo tee /usr/share/keyrings/influxdb-archive-keyring.gpg >/dev/null
+```
+Para adicionar o repositório oficial da InfluxData (InfluxDB, Telegraf, etc.) ao APT, permitindo que você instale e atualize esses pacotes diretamente via ```apt```, use o comando:
+
+```bash
+echo "deb [signed-by=/usr/share/keyrings/influxdb-archive-keyring.gpg] https://repos.influxdata.com/debian stable main" | sudo tee /etc/apt/sources.list.d/influxdb.list
+```
