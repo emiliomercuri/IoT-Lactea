@@ -32,7 +32,38 @@ Raspberry Connect e Netbird
 
 * Explicar brevemente o que é o MING Stack e seu princípio de funcionamento
 
-Para começar, precisamos installar todos os softwares necessários um por um.
+Antes de iniciar a instalação dos softwares, precisamos atualizar todos os pacotes instalados no seu sistema para as versões mais recentes disponíveis nos repositórios. Para isso, execute no terminal:
 
-### Instalação
-   
+```bash
+sudo apt update && sudo apt upgrade
+```
+
+Digite "y" para confirmar a instalação, que poderá demorar alguns instantes.
+
+### Instalação do MQTT:
+
+Uma vez que seu sistema foi atualizado, podemos instalar o Mosquitto MQTT Broker, que é um servidor que gerencia mensagens usando o protocolo MQTT (Message Queuing Telemetry Transport), através do seguinte comando:
+
+```bash
+sudo apt install -y mosquitto mosquitto-clients
+```
+
+Uma vez instalado, precisamos configurar o Mosquitto para iniciar automaticamente toda vez que o sistema for ligado, rodando no Prompt:
+
+```bash
+sudo systemctl enable mosquitto.service
+```
+
+Agora, para checar o status do Mosquitto, rode:
+
+```bash
+mosquitto -v
+```
+
+O que deverá retornar a geguinte mensagem:
+
+![5](https://github.com/user-attachments/assets/20fb2900-38a6-46a5-9284-cae5df662150)
+
+
+
+
