@@ -77,6 +77,7 @@ Uma tela como essa deverá se abrir:
 Agora, adicione no final desse arquivo as segunites linhas:
 
 > listener 1883
+> 
 > allow_anonymous true
 
 Para salvar as alterações, aperte “Ctrl + S” e para sair do editor de texto, use “Ctrl + Q”. Isso feito, precisamos reiniciar o Mosquitto para garantir que as modificações sejam aplicadas rodando na linha de comando:
