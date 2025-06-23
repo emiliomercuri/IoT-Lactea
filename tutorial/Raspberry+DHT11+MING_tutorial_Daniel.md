@@ -407,3 +407,13 @@ Esse Token deverá ser copiado na configuração do nó "influxdb out" no Node-R
 ![Captura de tela 2025-06-23 184451](https://github.com/user-attachments/assets/2d73874b-e017-49d6-a679-19d44126386c)
 
  Após essas alterações, clique em "Feito", e depois em "Implementar", no canto superior direito.
+
+ Feito isso, agora você pode acessar os dados do sensor através do InfluxDB. Para isso, vá até o site e acesse a aba "Buckets" através da barra à esquerda:
+
+![Captura de tela 2025-06-23 191010](https://github.com/user-attachments/assets/3c7fda8b-0c5c-4c0a-a66a-bf5039bc92b8)
+
+Em seguida, clique sobre o nome do Bucket que você criou anteriormente:
+
+![Captura de tela 2025-06-23 191248](https://github.com/user-attachments/assets/fdb23f15-29ed-4cd1-92fa-36366ecb4fc8)
+
+
