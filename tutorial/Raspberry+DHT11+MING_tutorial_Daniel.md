@@ -348,3 +348,19 @@ Feito o acesso, você terá que adicionar as seguintes credencias iniciais:
 
 Após isso, clque em "Log in". Será então pedido para você alterar sua senha. Após a alteração, clique em "Submit" 
 
+### Fazendo o MING Stack
+
+Agora, no Node-RED, usando a barra de busca à esquerda, pesquise por "mqtt" e arraste o nó "mqtt in" para a área quadriculada. Clique duas vezes em cima do nó para iniciar sua configuração. Uma aba como essa deverá se abrir:
+
+![24](https://github.com/user-attachments/assets/ea09910f-f161-4014-8a15-09976b4c6927)
+
+Clique no símbolo de "+" destacado em vermelho na imagem para acessar as propriedades do nó:
+
+![25](https://github.com/user-attachments/assets/0658d97e-37b0-456b-a267-b99b94a45db9)
+
+Agora, no campo "Servidor", preencha com **"localhost"** e depois clique em "Adicionar". Depois, preencha o campo "Tópico" com **"dht11/sensordata"** (como no script em Python), e defina o "QoS" como "1". Após isso, clique em "Feito":
+
+![26](https://github.com/user-attachments/assets/79ac76bb-b2b3-456d-996d-904523d39385)
+
+
+
