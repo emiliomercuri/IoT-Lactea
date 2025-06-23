@@ -26,7 +26,7 @@ Configurar:
 
 ## 3. Conexão remota
 
-Raspberry Connect e Netbird 
+Raspberry Connect e Netbird
 
 ## 4. Instalação do MQTT, Influxdb, Node-Red e Grafana (MING Stack)
 
@@ -219,10 +219,15 @@ Por fim, podemos iniciar o Grafana imediatamente utilizando:
 ```bash
 sudo systemctl start grafana-server
 ```
+## Configuração para aquisição de dados
+
+Feita a instalação das quatro ferramentas necessárias para o nosso Dashboard, precisamos agora configurar o Raspberry Pi para realizar a aquisição dos dados de temperatura e umidade do sensor DHT11.
+
+### Instalação do Python
 
 ## Configuração do Node-RED, InfluxDB e Grafana
 
-Acabamos de realizar a instalação de todas as quatro ferramentas necessárias para criar nosso Dashboard. Agora, precisamos configurar cada uma dessas ferramentas.
+Agora, precisamos configurar cada uma das quatro ferramentas.
 
 ### Configuração do Node-RED
 
@@ -238,7 +243,7 @@ A seguinte resposta deverá apacerer. No meu caso, a conexão do Rasbperry Pi es
 
 Agora, utilizando um navegador web, é possível acessar o Node-RED utilizando o endereço de IP, acrescentando ":" e o número da porta de acesso "1880" na barra de busca:
 
-> http://192.168.1.22:1880
+> 192.168.1.22:1880
 
 Um site como esse deverá se abrir, e você terá que adicionar suas credenciais configuradas na instalação do Node-RED:
 
@@ -246,7 +251,7 @@ Um site como esse deverá se abrir, e você terá que adicionar suas credenciais
 
 ### Configuração do InfluxDB
 
-Para acessar o InfluxDB através do seu navegador, utilize na barra de busca o seu endereço de IP, acrescido de ":" e o número "8086". Em seguida, clique em "GET STARTED", e preencha as informações:
+Para acessar o InfluxDB através do seu navegador, utilize na barra de busca o seu endereço de IP, acrescido de ":" e o número "8086". Em seguida, clique em "Get started", e preencha as informações:
 
 ![21](https://github.com/user-attachments/assets/7f0e6c80-6fc2-4146-98a3-170c284b87b9)
 
@@ -258,5 +263,15 @@ Aqui, você deverá inserir:
 >
 > Nome inicial do Bucket, que é onde seus dados serão armazenados. Aqui se escolheu o nome "sensordata" por simplicidade.
 
+Feito isso, clique em "Continue", e uma nova aba deverá aparecer. Certifique-se de copiar e guardar seu "operator  API token", para um possível uso futuro. Em seguida, clique em "Quick start".
 
+### Configuração do Grafana
+
+O acesso ao Grafana também é feito através do navegador, usando o endereço de IP acrescido de ":" e o número "3000" na barra de busca. Feito o acesso, você terá que adicionar as seguintes credencias iniciais:
+
+> Usuário: admin
+>
+> Senha: admin
+
+Após isso, clque em "Log in". Será então pedido para você alterar sua senha. Após a alteração, clique em "Submit" 
 
