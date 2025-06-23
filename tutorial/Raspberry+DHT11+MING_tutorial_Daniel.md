@@ -470,20 +470,3 @@ Agora, volte ao Grafana e cole o script no campo destacado:
 Após isso, clique em "Query inspector" e depois em "Refresh". Assim você acaba de criar um painel que mostra os dados obtidos a partir do sensor DHT11 em tempo real:
 
 ![Captura de tela 2025-06-23 201618](https://github.com/user-attachments/assets/38fd06d2-6a17-4acd-99dd-c34c7527c14f)
-
-Agora, é possível dar um nome ao seu painel de dados e salvar o seu Dashboard.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
