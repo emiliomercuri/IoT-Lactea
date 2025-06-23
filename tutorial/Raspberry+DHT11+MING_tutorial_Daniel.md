@@ -416,4 +416,8 @@ Em seguida, clique sobre o nome do Bucket que você criou anteriormente:
 
 ![Captura de tela 2025-06-23 191248](https://github.com/user-attachments/assets/fdb23f15-29ed-4cd1-92fa-36366ecb4fc8)
 
+Agora, uma aba como a abaixo deverá ter se aberto:
 
+![Captura de tela 2025-06-23 191612](https://github.com/user-attachments/assets/dad3cdd4-567c-4fb6-bd0c-f9cd12ce1ab2)
+
+Para visualizar seus dados, selecione o nome do Bucket e o "Measurement" que foi definido no Node-RED. Em seguida, selecione qual o dado que você quer que apareça (aqui, foi selecionado temperatura e umidade simultâneamente). Na parte superior, você pode escolher como o dado vai ser apresentado. Após ter selecionado as opções desejadas, clique em "Submit" na direita para ver seus dados sendo gerados.
