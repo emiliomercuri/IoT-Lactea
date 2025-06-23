@@ -299,7 +299,7 @@ Você também pode fazer com que esse scipt em Python rode como um seviço que i
 
 Agora, precisamos configurar cada uma das quatro ferramentas.
 
-### Configuração do Node-RED
+### Acesso ao Node-RED
 
 Para iniciar, precisaremos do endereço de IP "wlan0" (caso sua conexão de internet seja por wi-fi) ou "eth0" (caso sua conexão seja cabeada), que podem ser obtidos usando o código:
 
@@ -319,7 +319,7 @@ Um site como esse deverá se abrir, e você terá que adicionar suas credenciais
 
 ![19](https://github.com/user-attachments/assets/5391a8e1-a646-42c3-a3e2-2e0570020151)
 
-### Configuração do InfluxDB
+### Acesso ao InfluxDB
 
 Para acessar o InfluxDB através do seu navegador, utilize na barra de busca o seu endereço de IP, acrescido de ":" e o número "8086". Em seguida, clique em "Get started", e preencha as informações:
 
@@ -335,7 +335,7 @@ Aqui, você deverá inserir:
 
 Feito isso, clique em "Continue", e uma nova aba deverá aparecer. Certifique-se de copiar e guardar seu "operator  API token", para um possível uso futuro. Em seguida, clique em "Quick start".
 
-### Configuração do Grafana
+### Acesso ao Grafana
 
 O acesso ao Grafana também é feito através do navegador, usando o endereço de IP acrescido de ":" e o número "3000" na barra de busca. Feito o acesso, você terá que adicionar as seguintes credencias iniciais:
 
