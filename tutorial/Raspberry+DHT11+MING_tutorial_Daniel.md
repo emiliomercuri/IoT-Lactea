@@ -390,4 +390,20 @@ Nas propriedades, preencha o campo "Host" com **"localhost"** e defina a versão
 
 ![32](https://github.com/user-attachments/assets/da39d9a0-d2e6-42e1-b711-bc5015d01416)
 
-Agora, para obter o Token, será necessário 
+O Token pode ser obtido através do site do InfluxDB. Para gerá-lo, vá até o site e procure por "API Tokens" na barra à esquerda, como mostrado abaixo:
+
+![33](https://github.com/user-attachments/assets/d71d2600-7823-4419-bda7-dfb6a5e14bc8)
+
+Em seguida, clique em "Generate API Token" e depois em "All Acess API Token":
+
+![34](https://github.com/user-attachments/assets/a8a0d1cc-1ac3-4f3a-a227-8f6fb12abb34)
+
+Dê uma descrição para o seu Token, em seguida clique em "Save". Após isso, copie o Token destacado em roxo:
+
+![Captura de tela 2025-06-23 183338](https://github.com/user-attachments/assets/9e9dd4c7-0648-4b4a-8af6-82cde82f2c14)
+
+Esse Token deverá ser copiado na configuração do nó "influxdb out" no Node-RED. Após copiado, clique em "Adicionar" e adicione ao campo "Organization" o nome da organização que você colocou no primeiro acesso ao InfluxDB (aqui, o nome dado foi **"lactea"**). Também preencha o nome do Bucket, que no meu caso é **"sensordata"**. No campo "Measurement", pode ser criado um nome qualquer. Aqui foi utilizado **"dht11"** como um exemplo.
+
+![Captura de tela 2025-06-23 184451](https://github.com/user-attachments/assets/2d73874b-e017-49d6-a679-19d44126386c)
+
+ Após essas alterações, clique em "Feito", e depois em "Implementar", no canto superior direito.
