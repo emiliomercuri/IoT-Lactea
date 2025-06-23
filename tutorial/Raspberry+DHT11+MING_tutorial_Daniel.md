@@ -364,3 +364,8 @@ Agora, no campo "Servidor", preencha com **"localhost"** e depois clique em "Adi
 
 Preencha o campo "Tópico" com **"dht11/sensordata"** (como no script em Python), e defina o "QoS" como "1". Após isso, clique em "Feito".
 
+Em seguida, podemos usar o nó de Debug para entender o que está acontecendo. Para isso, procure por "Debug" na barra de busca à esquerda e arraste para a área quadriculada. Após isso, conecte os dois nós, formando algo parecido com a imagem abaixo:
+
+![27](https://github.com/user-attachments/assets/5b47af14-fccb-498c-b062-cb6d903dc053)
+
+Clique então no botão "Implementar", destacado em vermelho. Você poderá então ver os dados de umidade e temperatura sendo gerados à direita.
