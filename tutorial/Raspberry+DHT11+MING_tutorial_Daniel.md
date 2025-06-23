@@ -421,3 +421,25 @@ Agora, uma aba como a abaixo deverá ter se aberto:
 ![Captura de tela 2025-06-23 191612](https://github.com/user-attachments/assets/dad3cdd4-567c-4fb6-bd0c-f9cd12ce1ab2)
 
 Para visualizar seus dados, selecione o nome do Bucket e o "Measurement" que foi definido no Node-RED. Em seguida, selecione qual o dado que você quer que apareça (aqui, foi selecionado temperatura e umidade simultâneamente). Na parte superior, você pode escolher como o dado vai ser apresentado. Após ter selecionado as opções desejadas, clique em "Submit" na direita para ver seus dados sendo gerados.
+
+Depois de configurado o InfluxDB, podemos partir para o Grafana. Na pagina inicial, clique em "Data sources":
+
+![Captura de tela 2025-06-23 192629](https://github.com/user-attachments/assets/59636f75-9ee6-4593-9d8c-fea1647ffaa9)
+
+Então clique em "InfluxDB". Uma aba de configuração deverá ter sido aberta:
+
+![Captura de tela 2025-06-23 193338](https://github.com/user-attachments/assets/f1f4b712-5bf6-4e3f-bb85-3b60c364b90b)
+
+No campo "Query Language", selecione **"Flux"** e preencha o URL com **"http://localhost:8086"**
+
+
+
+
+
+
+
+
+
+
+
+
