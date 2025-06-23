@@ -438,6 +438,43 @@ No campo "Organization", preencha com o nome da organização definida anteriorm
 
 ![Captura de tela 2025-06-23 194404](https://github.com/user-attachments/assets/6679ebc1-4db0-473f-b9c3-22cb613cb8c2)
 
+Feita a configuração do Grafana, podemos agora criar um Dashbord que mostra os dados obtidos pelo sensor em tempo real. A partir da aba "Dashboard" disponível à esquerda, clique em "Create Dashboard"
+
+![Captura de tela 2025-06-23 194935](https://github.com/user-attachments/assets/e854c805-9a1c-4035-9e75-51b89615c187)
+
+Em seguida, clique em "Add visualization", e selecione a opção "influxdb" como fonte de dados:
+
+![Captura de tela 2025-06-23 195206](https://github.com/user-attachments/assets/c8d3f6cc-584c-4197-a44a-177bccb78dce)
+
+Agora, precisamos de um sample query, que deve ser incluído no campo destacado em vermelho:
+
+![Captura de tela 2025-06-23 195654](https://github.com/user-attachments/assets/b9aea0e4-a6a8-4ec2-a98a-7af6a7ac831a)
+
+Isso pode ser obtido voltando para a interface do InfluxDB:
+
+![Captura de tela 2025-06-23 200119](https://github.com/user-attachments/assets/a28c86d7-4813-4502-8062-c96ce9db7693)
+
+Ao acessar o Bucket em que está sendo armazenado os dados, é possível obter o script que deverá ser colado no Grafana selecionando o dado desejado, e depois clicando em "Script Editor":
+
+![Captura de tela 2025-06-23 200119](https://github.com/user-attachments/assets/57eee58f-be9b-401e-8cee-a99dc4e40379)
+
+Você deverá então copiar todas as linhas do script, **exceto a última**:
+
+![Captura de tela 2025-06-23 200119](https://github.com/user-attachments/assets/4106d6d3-2199-485a-aa44-60cee1637b28)
+
+Agora, volte ao Grafana e cole o script no campo destacado:
+
+![Captura de tela 2025-06-23 201038](https://github.com/user-attachments/assets/7935e596-4603-459a-af64-cd63fd15545d)
+
+Após isso, clique em "Query inspector" e depois em "Refresh". Assim você acaba de criar um painel que mostra os dados obtidos a partir do sensor DHT11 em tempo real:
+
+![Captura de tela 2025-06-23 201618](https://github.com/user-attachments/assets/38fd06d2-6a17-4acd-99dd-c34c7527c14f)
+
+Agora, é possível dar um nome ao seu painel de dados e salvar o seu Dashboard.
+
+
+
+
 
 
 
