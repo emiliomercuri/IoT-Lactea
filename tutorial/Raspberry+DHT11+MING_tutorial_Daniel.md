@@ -219,11 +219,9 @@ Por fim, podemos iniciar o Grafana imediatamente utilizando:
 ```bash
 sudo systemctl start grafana-server
 ```
-## Configuração para aquisição de dados
+## 5. Configuração para aquisição de dados
 
 Feita a instalação das quatro ferramentas necessárias para o nosso Dashboard, precisamos agora configurar o Raspberry Pi para realizar a aquisição dos dados de temperatura e umidade do sensor DHT11.
-
-### Configuração do Python
 
 Para instalar o ambiente completo de Python 3 no seu sistema, execute na linha de comando:
 
@@ -295,7 +293,7 @@ python3 mqtt.py
 
 Você também pode fazer com que esse scipt em Python rode como um seviço que inicia ao ligar o sistema operacional. Basta seguir o seguinte tutorial: [Service_for_python_aquisition.md](https://github.com/emiliomercuri/MING-Lactea/blob/main/tutorial/Service_for_python_aquisition.md). Vale ressaltar que, antes de iniciar o tutorial, você deve sair do ambiente virtual Python com o comando ```deactivate```.
 
-## Configuração do Node-RED, InfluxDB e Grafana
+## 6. Configuração do Node-RED, InfluxDB e Grafana
 
 Agora, precisamos configurar cada uma das quatro ferramentas.
 
