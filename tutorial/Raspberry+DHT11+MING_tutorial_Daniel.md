@@ -346,7 +346,7 @@ Feito o acesso, você terá que adicionar as seguintes credencias iniciais:
 >
 > Senha: admin
 
-Após isso, clque em "Log in". Será então pedido para você alterar sua senha. Após a alteração, clique em "Submit" 
+Após isso, clque em "Log in". Será então pedido para você alterar sua senha. Após a alteração, clique em "Submit". 
 
 ### Fazendo o MING Stack
 
@@ -358,9 +358,9 @@ Clique no símbolo de "+" destacado em vermelho na imagem para acessar as propri
 
 ![25](https://github.com/user-attachments/assets/0658d97e-37b0-456b-a267-b99b94a45db9)
 
-Agora, no campo "Servidor", preencha com **"localhost"** e depois clique em "Adicionar". Depois, preencha o campo "Tópico" com **"dht11/sensordata"** (como no script em Python), e defina o "QoS" como "1". Após isso, clique em "Feito":
+Agora, no campo "Servidor", preencha com **"localhost"** e depois clique em "Adicionar".
 
 ![26](https://github.com/user-attachments/assets/79ac76bb-b2b3-456d-996d-904523d39385)
 
-
+Preencha o campo "Tópico" com **"dht11/sensordata"** (como no script em Python), e defina o "QoS" como "1". Após isso, clique em "Feito".
 
