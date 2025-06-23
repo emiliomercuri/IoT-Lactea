@@ -337,7 +337,12 @@ Feito isso, clique em "Continue", e uma nova aba deverá aparecer. Certifique-se
 
 ### Acesso ao Grafana
 
-O acesso ao Grafana também é feito através do navegador, usando o endereço de IP acrescido de ":" e o número "3000" na barra de busca. Feito o acesso, você terá que adicionar as seguintes credencias iniciais:
+O acesso ao Grafana também é feito através do navegador, usando o endereço de IP acrescido de ":" e o número "3000" na barra de busca.
+
+![22](https://github.com/user-attachments/assets/6cae4148-b5d6-4baa-b7bd-4ad5db20663e)
+
+
+Feito o acesso, você terá que adicionar as seguintes credencias iniciais:
 
 > Usuário: admin
 >
