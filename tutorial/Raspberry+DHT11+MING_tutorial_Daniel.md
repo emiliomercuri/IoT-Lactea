@@ -212,7 +212,7 @@ Pressione "y" para confirmar a instalação, que poderá levar um certo tempo. U
 
 ```bash
 sudo systemctl enable grafana-server
-``
+```
 
 Por fim, podemos iniciar o Grafana imediatamente utilizando:
 
