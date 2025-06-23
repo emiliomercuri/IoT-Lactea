@@ -231,6 +231,24 @@ Para instalar o ambiente completo de Python 3 no seu sistema, execute na linha d
 sudo apt install python3 python3-pip python3-venv
 ```
 
+Instalamos agora a biblioteca ```libgpiod2```, que permite o acesso e controle das GPIOs (General Purpose Input/Output) em sistemas Linux:
+
+```bash
+sudo apt install libgpiod2
+```
+
+Também fazemos a instalação da biblioteca ```rpi.gpio```, permitindo que scripts Python controlem os pinos GPIO da placa:
+
+```bash
+sudo apt-get install python3-rpi.gpio
+```
+
+Digite "y" para confirmar a instalação. 
+
+```bash
+sudo apt install python3 python3-pip python3-venv
+```
+
 Agora, criamos uma pasta que conterá o código em Python para obtenção de dados usando:
 
 ```bash
@@ -267,7 +285,13 @@ Podemos agora criar o programa em Python ```mqtt.py``` que conterá o código pa
 micro mqtt.py
 ```
 
-Dentro do editor, copie o código disponível em: https://github.com/emiliomercuri/MING-Lactea/blob/main/codes/mqtt-dht11.py
+Dentro do editor, copie o código disponível na pasta: [codes/mqtt-dht11.py](https://github.com/emiliomercuri/MING-Lactea/blob/main/codes/mqtt-dht11.py). Salve as alterações com “Ctrl + S” e, saia do editor de texto usando “Ctrl + Q”.
+
+Agora, dentro do ambiente virtual, podemos executar o programa em Python com o código:
+
+```bash
+python3 mqtt.py
+```
 
 ## Configuração do Node-RED, InfluxDB e Grafana
 
