@@ -9,7 +9,7 @@ sudo apt install micro
 
 ## Criar um Shell Script executável
 
-Dentro de uma pasta de sua preferência, crie o script que conterá o código Python (aqui será utilizado um código que realiza a coleta de dados do sensor DHT11 como exemplo):
+Dentro de uma pasta de sua preferência, crie o script que conterá o código Python (aqui será utilizado um código que realiza a coleta de dados do sensor DHT11, contido na pasta "dht11", como exemplo):
 ```bash
 micro aquisicao_dht11.sh
 ```
