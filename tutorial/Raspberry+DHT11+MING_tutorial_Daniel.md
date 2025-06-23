@@ -460,7 +460,8 @@ Ao acessar o Bucket em que está sendo armazenado os dados, é possível obter o
 
 Você deverá então copiar todas as linhas do script, **exceto a última**:
 
-![Captura de tela 2025-06-23 200119](https://github.com/user-attachments/assets/4106d6d3-2199-485a-aa44-60cee1637b28)
+![Captura de tela 2025-06-23 200616](https://github.com/user-attachments/assets/81ac0f33-f580-4125-a5d4-6171cca17b6a)
+
 
 Agora, volte ao Grafana e cole o script no campo destacado:
 
