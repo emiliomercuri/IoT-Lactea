@@ -368,4 +368,26 @@ Em seguida, podemos usar o nó de Debug para entender o que está acontecendo. P
 
 ![27](https://github.com/user-attachments/assets/5b47af14-fccb-498c-b062-cb6d903dc053)
 
-Clique então no botão "Implementar", destacado em vermelho. Você poderá então ver os dados de umidade e temperatura sendo gerados à direita.
+Clique então no botão "Implementar", destacado em vermelho. Você poderá então ver os dados de umidade e temperatura sendo gerados à direita na aba "mensagens de depuração".
+
+Agora, precisamos instalar o InfluxDB dentro do Node-RED. Para isso, arraste o mouse para o ícone de três barras no canto superior direito e clique em "Gerenciar paleta":
+
+![28](https://github.com/user-attachments/assets/475d6d71-6d2a-4d58-b0c1-b9092726f67b)
+
+Vá então para a aba "Instalar" e procure por "influx". Instale a segunda opção, destacada em vermelho abaixo:
+
+![29](https://github.com/user-attachments/assets/9f6a96fe-64f1-4aa3-a93f-122f04d5e616)
+
+Após instalado, feche a aba e busque pelo nó "influx out". Arraste ele para a área quadriculada e conecte ao nó "dht11/sensordata", como mostrado abaixo:
+
+![30](https://github.com/user-attachments/assets/42b7f07a-4993-4d10-9050-9321d4bcb5e1)
+
+Precisamos agora configurar o nó. Para isso, clique duas vezes sobre ele e depois clique no botão "+" destacado abaixo:
+
+![31](https://github.com/user-attachments/assets/0e16a2ff-ecd9-4e50-aa2f-f66e27d8af24)
+
+Nas propriedades, preencha o campo "Host" com "localhost" e defina a versão como "2.0":
+
+![32](https://github.com/user-attachments/assets/da39d9a0-d2e6-42e1-b711-bc5015d01416)
+
+
