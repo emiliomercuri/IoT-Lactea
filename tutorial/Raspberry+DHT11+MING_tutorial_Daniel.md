@@ -223,7 +223,43 @@ sudo systemctl start grafana-server
 
 Feita a instalação das quatro ferramentas necessárias para o nosso Dashboard, precisamos agora configurar o Raspberry Pi para realizar a aquisição dos dados de temperatura e umidade do sensor DHT11.
 
-### Instalação do Python
+### Configuração do Python
+
+Para instalar o ambiente completo de Python 3 no seu sistema, execute na linha de comando:
+
+```bash
+sudo apt install python3 python3-pip python3-venv
+```
+
+Agora, criamos uma pasta que conterá o código em Python para obtenção de dados usando:
+
+```bash
+mkdir ~/dht11
+```
+
+Para acessar a pasta, use:
+
+```bash
+cd dht11
+```
+
+Criamos então um ambiente virtual Python chamado ```env``` dentro desse diretório, utilizando o comando:
+
+```bash
+python3 -m venv env
+```
+
+Ativamos agora o ambiente virtual, rodando:
+
+```bash
+source env/bin/activate
+```
+
+Seguindo, rodamos o seguinte código para instalar duas bibliotecas Python necessárias para leitura e envio de dados do sensor, usando o ```pip3```:
+
+```bash
+pip3 install adafruit-circuitpython-dht paho.mqtt
+```
 
 ## Configuração do Node-RED, InfluxDB e Grafana
 
