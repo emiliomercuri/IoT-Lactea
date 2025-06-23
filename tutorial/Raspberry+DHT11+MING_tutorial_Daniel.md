@@ -362,7 +362,7 @@ Agora, no campo "Servidor", preencha com **"localhost"** e depois clique em "Adi
 
 ![26](https://github.com/user-attachments/assets/79ac76bb-b2b3-456d-996d-904523d39385)
 
-Preencha o campo "Tópico" com **"dht11/sensordata"** (como no script em Python), e defina o "QoS" como "1". Após isso, clique em "Feito".
+Preencha o campo "Tópico" com **"dht11/sensordata"** (como no script em Python), e defina o "QoS" como **"1"**. Após isso, clique em "Feito".
 
 Em seguida, podemos usar o nó de Debug para entender o que está acontecendo. Para isso, procure por "Debug" na barra de busca à esquerda e arraste o nó para a área quadriculada. Após isso, conecte os dois nós, formando algo parecido com a imagem abaixo:
 
@@ -386,8 +386,8 @@ Precisamos agora configurar o nó. Para isso, clique duas vezes sobre ele e depo
 
 ![31](https://github.com/user-attachments/assets/0e16a2ff-ecd9-4e50-aa2f-f66e27d8af24)
 
-Nas propriedades, preencha o campo "Host" com "localhost" e defina a versão como "2.0":
+Nas propriedades, preencha o campo "Host" com **"localhost"** e defina a versão como **"2.0"**:
 
 ![32](https://github.com/user-attachments/assets/da39d9a0-d2e6-42e1-b711-bc5015d01416)
 
-
+Agora, para obter o Token, será necessário 
