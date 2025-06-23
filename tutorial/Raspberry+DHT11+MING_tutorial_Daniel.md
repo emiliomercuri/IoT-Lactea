@@ -243,13 +243,7 @@ Também fazemos a instalação da biblioteca ```rpi.gpio```, permitindo que scri
 sudo apt-get install python3-rpi.gpio
 ```
 
-Digite "y" para confirmar a instalação. 
-
-```bash
-sudo apt install python3 python3-pip python3-venv
-```
-
-Agora, criamos uma pasta que conterá o código em Python para obtenção de dados usando:
+Digite "y" para confirmar a instalação. Agora, criamos uma pasta que conterá o código em Python para obtenção de dados usando:
 
 ```bash
 mkdir ~/dht11
@@ -279,6 +273,12 @@ Seguindo, rodamos o seguinte código para instalar duas bibliotecas Python neces
 pip3 install adafruit-circuitpython-dht paho.mqtt
 ```
 
+Também deve ser instalado mais três bibliotecas importantes para o funcionamento do script em Python, usando o código:
+
+```bash
+pip3 install adafruit-circuitpython-minimqtt RPI.GPIO adafruit-blinka
+```
+
 Podemos agora criar o programa em Python ```mqtt.py``` que conterá o código para a leitura e envio de dados de umidade e temperatura do sensor DHT11, utilizando o editor de texto ```micro```:
 
 ```bash
@@ -292,6 +292,9 @@ Agora, dentro do ambiente virtual, podemos executar o programa em Python com o c
 ```bash
 python3 mqtt.py
 ```
+
+Você também pode fazer com que esse scipt em Python rode como um seviço que inicia ao ligar o sistema operacional. Basta seguir o seguinte tutorial: [Service_for_python_aquisition.md](https://github.com/emiliomercuri/MING-Lactea/blob/main/tutorial/Service_for_python_aquisition.md)
+
 
 ## Configuração do Node-RED, InfluxDB e Grafana
 
