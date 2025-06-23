@@ -248,7 +248,7 @@ Para acessar o ambiente Grafana, utilize as credenciais:
 Após entrar, o Grafana exigirá que você escolha uma nova senha. Feito isso, você será redirecionado para a página principal, onde deve selecionar "Data Source" e nas opções exibidas, selecionar "InfluxDB". No formulário que aparecerá, você deve cadastrar os dados sugeridos:
 > Query Lenguage: selecionar "Flux"
 >
-> HTTP -> URL: http://"ipNumber":8086
+> HTTP -> URL: http://"ipNumber":8086 ou localhost:8086
 >
 > InfluxDB Details: preencher os ítens "Organization", "Token" e "Default Bucket" com os mesmo dados cadastrado no Influx e deve ser utilizado o Token gerado no API Token para o Grafana.
 >
