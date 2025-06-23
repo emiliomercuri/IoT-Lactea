@@ -261,6 +261,14 @@ Seguindo, rodamos o seguinte código para instalar duas bibliotecas Python neces
 pip3 install adafruit-circuitpython-dht paho.mqtt
 ```
 
+Podemos agora criar o programa em Python ```mqtt.py``` que conterá o código para a leitura e envio de dados de umidade e temperatura do sensor DHT11, utilizando o editor de texto ```micro```:
+
+```bash
+micro mqtt.py
+```
+
+Dentro do editor, copie o código disponível em: https://github.com/emiliomercuri/MING-Lactea/blob/main/codes/mqtt-dht11.py
+
 ## Configuração do Node-RED, InfluxDB e Grafana
 
 Agora, precisamos configurar cada uma das quatro ferramentas.
