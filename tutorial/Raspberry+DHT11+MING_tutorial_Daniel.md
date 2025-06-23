@@ -430,7 +430,13 @@ Então clique em "InfluxDB". Uma aba de configuração deverá ter sido aberta:
 
 ![Captura de tela 2025-06-23 193338](https://github.com/user-attachments/assets/f1f4b712-5bf6-4e3f-bb85-3b60c364b90b)
 
-No campo "Query Language", selecione **"Flux"** e preencha o URL com **"http://localhost:8086"**
+No campo "Query Language", selecione **"Flux"** e preencha o URL com **"http://localhost:8086"**. Agora, mais para baixo, temos que preencher os dados do InfluxDB:
+
+![Captura de tela 2025-06-23 193919](https://github.com/user-attachments/assets/a24f5fb8-5bee-457c-81cf-a3a5a52a16ca)
+
+No campo "Organization", preencha com o nome da organização definida anteriormente. Para o campo "Token", um novo API Token deverá ser criado no InfluxDB, usando o mesmo processo anterior. Preencha o campo "Bucket" com o mesmo nome de Bucket configurado nos passos anteriores. Após preenchido esses campos, clique em "Save and Test". Uma mensagem como a abaixo deverá surgir:
+
+![Captura de tela 2025-06-23 194404](https://github.com/user-attachments/assets/6679ebc1-4db0-473f-b9c3-22cb613cb8c2)
 
 
 
