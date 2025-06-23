@@ -293,8 +293,7 @@ Agora, dentro do ambiente virtual, podemos executar o programa em Python com o c
 python3 mqtt.py
 ```
 
-Você também pode fazer com que esse scipt em Python rode como um seviço que inicia ao ligar o sistema operacional. Basta seguir o seguinte tutorial: [Service_for_python_aquisition.md](https://github.com/emiliomercuri/MING-Lactea/blob/main/tutorial/Service_for_python_aquisition.md)
-
+Você também pode fazer com que esse scipt em Python rode como um seviço que inicia ao ligar o sistema operacional. Basta seguir o seguinte tutorial: [Service_for_python_aquisition.md](https://github.com/emiliomercuri/MING-Lactea/blob/main/tutorial/Service_for_python_aquisition.md). Vale ressaltar que, antes de iniciar o tutorial, você deve sair do ambiente virtual Python com o comando ```deactivate```.
 
 ## Configuração do Node-RED, InfluxDB e Grafana
 
