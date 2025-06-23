@@ -16,7 +16,7 @@ micro aquisicao_dht11.sh
 Dentro do editor Micro, escreva os seguintes comandos:
 ```bash
 #!/bin/bash
-cd ~/dht11
+cd home/dht11
 source env/bin/activate
 python3 mqtt.py
 ```
