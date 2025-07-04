@@ -1,7 +1,7 @@
 ## Node-red
 
 * <endereço ip>:1880
-* usuário: pi
+* usuário: lactea
 * senha: iot*****e
 
 ## InfluxDB
