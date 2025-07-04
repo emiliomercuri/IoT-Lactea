@@ -7,7 +7,7 @@
 ## InfluxDB
 
 * <endereço ip>:8086
-* usuário: pi
+* usuário: lactea
 senha: iot*****e
 
 ## Grafana
