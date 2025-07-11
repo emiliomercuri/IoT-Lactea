@@ -37,9 +37,10 @@ ln -s ~/.platformio/penv/bin/pio ~/.local/bin/pio
 ln -s ~/.platformio/penv/bin/piodebuggdb ~/.local/bin/piodebuggdb
 ```
 
-Criar um diretório para o desenvolvimentos dos estudos utilizando a PlatformIO:
+Criar um diretório para o desenvolvimento dos estudos utilizando a PlatformIO:
 ```
 mkdir platformio-learn
 ```
 
 ## SCD4x
+Primeiramente iremos verificar se o Raspberry está identificando o microcontrolador ESP38266
