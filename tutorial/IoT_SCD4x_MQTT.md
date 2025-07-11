@@ -37,10 +37,25 @@ ln -s ~/.platformio/penv/bin/pio ~/.local/bin/pio
 ln -s ~/.platformio/penv/bin/piodebuggdb ~/.local/bin/piodebuggdb
 ```
 
+Fazer um reboot do Raspberry com:
+```
+sudo reboot
+```
+Para ver se a PlatformIO está instalada corretamente, basta executar:
+```
+pio
+```
+
 Criar um diretório para o desenvolvimento dos estudos utilizando a PlatformIO:
 ```
 mkdir platformio-learn
 ```
 
+## ESP38266
+Primeiramente iremos verificar se o Raspberry está identificando o microcontrolador ESP38266. Para tanto, criamos uma diretório específico para este teste:
+```
+mkdir wemos-blink
+```
+
 ## SCD4x
-Primeiramente iremos verificar se o Raspberry está identificando o microcontrolador ESP38266
+
