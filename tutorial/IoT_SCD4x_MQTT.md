@@ -32,13 +32,12 @@ mkdir bin
 ```
 Posteriormente, mova a pasta para os diretorios da PlatformIo com os seguinte comandos:
 ```
-
-Criar um diretório para o desenvolvimentos dos estudos utilizando a PlatformIO:
-```
-mkdir platformio-learn
-```
 ln -s ~/.platformio/penv/bin/platformio ~/.local/bin/platformio
 ln -s ~/.platformio/penv/bin/pio ~/.local/bin/pio
 ln -s ~/.platformio/penv/bin/piodebuggdb ~/.local/bin/piodebuggdb
 ```
 
+Criar um diretório para o desenvolvimentos dos estudos utilizando a PlatformIO:
+```
+mkdir platformio-learn
+```
