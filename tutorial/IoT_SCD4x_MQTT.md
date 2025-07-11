@@ -41,3 +41,5 @@ Criar um diretório para o desenvolvimentos dos estudos utilizando a PlatformIO:
 ```
 mkdir platformio-learn
 ```
+
+## SCD4x
