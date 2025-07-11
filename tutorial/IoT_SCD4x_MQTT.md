@@ -1,6 +1,6 @@
 # Integração entre a Plataforma IoT Empire + sensor de CO2 SCD4x + MQTT, utilizando o microcontrolador ESP8266
 
-## Instalando IoT Empire
+## Instalando a PlaformIO
 
 Para verificar os requerimentos para a instalação da plataforma, execute o seguinte código:
 ```
