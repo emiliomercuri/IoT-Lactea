@@ -1,4 +1,3 @@
-```
 #include <DFRobot_SCD4X.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
@@ -96,4 +95,3 @@ void loop() {
   delay(5000);  // Espera entre medições
 }
 
-```
