@@ -21,5 +21,8 @@
 # 2. Conexões físicas
 
 <img width="909" height="885" alt="Diagrama sensor NO2_bb" src="https://github.com/user-attachments/assets/643aa7ab-2999-414d-9ff8-d8385056cf58" />
+
 (adicionar explicação detalhada das conexões)
 
+
+# 3. Software
