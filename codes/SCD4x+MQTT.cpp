@@ -7,10 +7,10 @@
 // ------------------------
 const char* ssid = "lactea-rasp4-thiago";
 const char* password = "iotempire";
-const char* mqtt_server = "200.17.235.75"; // Ex: "192.168.1.100"
+const char* mqtt_server = "200.XX.XXX.XX"; // Ex: "192.168.1.100"
 const int mqtt_port = 1883;
 const char* mqtt_user = "pi"; // Se necessário
-const char* mqtt_password = "iotempire"; // Se necessário
+const char* mqtt_password = "iot******"; // Se necessário
 
 WiFiClient espClient;
 PubSubClient client(espClient);
