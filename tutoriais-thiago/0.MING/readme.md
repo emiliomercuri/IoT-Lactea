@@ -1,0 +1,1 @@
+# Tutorial da configuração MING
