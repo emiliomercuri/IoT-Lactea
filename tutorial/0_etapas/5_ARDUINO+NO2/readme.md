@@ -1,7 +1,7 @@
 # 1. Materiais necessários
 
 ## - Raspberry Pi Model B
-<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/bcc39b87-5531-4bb5-a937-91739d8e6a6c" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/bcc39b87-5531-4bb5-a937-91739d8e6a6c" />
 
 ## - Arduino UNO
 (adicionar imagem)
