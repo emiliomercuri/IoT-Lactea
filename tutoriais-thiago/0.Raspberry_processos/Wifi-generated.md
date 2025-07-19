@@ -33,6 +33,7 @@ nmcli connection show <hotspot UUID>
 
 Caso o status esteja como:
 > connection.autoconnect:                 no
+> 
 > connection.autoconnect-priority:        0
 
 Então será necessário alterar este status com o seguinte código:
@@ -47,4 +48,5 @@ nmcli connection show <hotspot UUID>
 
 E o status observado deve ser:
 > connection.autoconnect:                 yes
+> 
 > connection.autoconnect-priority:        100
