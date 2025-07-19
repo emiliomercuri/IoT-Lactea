@@ -1,5 +1,7 @@
 # Gerando uma rede Wifi através do Raspberry Pi
 
+Este tutorial foi baseado nas seguintes instruções: https://www.raspberrypi.com/tutorials/host-a-hotel-wifi-hotspot/
+
 Para gerar uma rede wifi no Raspberry Pi, utilize os seguintes passos:
 
 ## Configuração do adaptador Wlan0
