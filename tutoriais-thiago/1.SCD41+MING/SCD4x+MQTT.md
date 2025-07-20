@@ -77,9 +77,23 @@ Dentro do diretório *src*, criamos o arquivo de texto:
 ```
 micro main.cpp
 ```
-Neste arquivo, colocamos o seguinte [código:] (https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/wemo-d1_mini-blink.cpp)
+Neste arquivo, colocamos o seguinte código:
+```
+#include <Arduino.h>
+const int LED_PIN = 2;
 
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+}
 
+void loop() {
+  digitalWrite(LED_PIN, HIGH);
+  delay(500);
+  digitalWrite(LED_PIN, LOW);
+  delay(500)
+}
+```
+Para salvar e fechar, tecle *Ctrl+S* e *Ctrl+Q*.
 
 
 ## SCD4x
