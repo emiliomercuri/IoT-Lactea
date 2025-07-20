@@ -77,7 +77,9 @@ Dentro do diretório *src*, criamos o arquivo de texto:
 ```
 micro main.cpp
 ```
-Neste arquivo, colocamos o seguinte código:
+Neste arquivo, colocamos o seguinte [código:] (https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/wemo-d1_mini-blink.cpp)
+
+
 
 
 ## SCD4x
