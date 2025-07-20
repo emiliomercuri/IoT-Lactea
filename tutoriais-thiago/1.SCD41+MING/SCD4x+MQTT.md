@@ -119,5 +119,6 @@ lib_deps =
   dfrobot/DFRobot_SCD4X
 ```
 
-Dentro do diretório *src*, que deverá ser criado, no arquivo *main.cpp* deverá ser utilizado do seguinte código: 
+Dentro do diretório *src*, que deverá ser criado, no arquivo *main.cpp* deverá ser utilizado do seguinte código: https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/wemos-d1_mini-periodMeasure.cpp
+
 ## SCD4x + MQTT
