@@ -107,6 +107,11 @@ Após alguns instantes, o download das configurações terá terminado e poderem
 ## SCD4x
 Agora vamos testar o sensor SCD41 e observar as leituras do mesmo. Para tanto, iremos repetir alguns passos do tópico anterior. No diretório **platformio-learn**, criamos outro diretório para armazenar as configurações do SCD41, criaremos outro arquivo do tipo *.ini*, um diretório *src* e neste diretório criaremos o arquivo *main.cpp*.
 
+Criaremos o seguinte diretório:
+```
+mkdir wemos-CO2
+```
+
 Desta vez, os códgigo utilizados serão diferentes. No arquivo *platformio.ini*, usaremos o seguinte código:
 ```
 [env:d1_mini]
@@ -121,4 +126,15 @@ lib_deps =
 
 Dentro do diretório *src*, que deverá ser criado, no arquivo *main.cpp* deverá ser utilizado do seguinte código: https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/wemos-d1_mini-periodMeasure.cpp
 
+Retornando para o diretório **wemos-CO2**, faremos o flashing dos dispositivos com o código já visto:
+```
+pio run --target upload
+```
+Após alguns instantes, o flashing estará completo e poderemos observar as leituras do sensor SCD41 através do seguinte código:
+```
+pio device monitor
+```
+Para encerrar o serviço, tecle *Ctrl+C*.
+
 ## SCD4x + MQTT
+Neste tópico, refaremos o mesmo fluxo anterior, porém, usaremos códigos diferentes. Desta vez, os dados coletados pelo sensor serão enviados através do wifi. A placa D1 Mini contém um placa wifi e permite enviar os dados ao Raspberry através desta rede. Posteriormente, enviaremos estes dados via MQTT para a plataforma Node-Red.
