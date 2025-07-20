@@ -51,11 +51,34 @@ Criar um diretório para o desenvolvimento dos estudos utilizando a PlatformIO:
 mkdir platformio-learn
 ```
 
-## ESP38266
+## D1 Mini ESP38266
 Primeiramente iremos verificar se o Raspberry está identificando o microcontrolador ESP38266. Para tanto, criamos uma diretório específico para este teste:
 ```
 mkdir wemos-blink
 ```
+Neste diretório, criamos um arquivo de inicialização com as informações da placa D1 mini e das bibliotecas necessárias. Para criar o arquivo, usamos o código:
+```
+micro platformio.ini
+```
+E digitamos o seguinte texto:
+```
+[env:d1_mini]
+platform = espressif8266
+board = d1_mini
+framework = arduino
+```
+Para salvar e fechar, teclamos *Ctrl+S* e *Ctrl+Q*.
+
+Ainda no diretório **wemos-blink**, criamos o diretório *src* e o arquivo *main*, com os seguintes códigos:
+```
+mkdir src
+```
+Dentro do diretório *src*, criamos o arquivo de texto:
+```
+micro main.cpp
+```
+Neste arquivo, colocamos o seguinte código:
+
 
 ## SCD4x
 
