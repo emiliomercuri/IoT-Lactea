@@ -105,4 +105,19 @@ pio run --target upload
 Após alguns instantes, o download das configurações terá terminado e poderemos observar o led da placa D1 Mini piscar em intervalos de 0,5 segundos (podemos alterar este tempo mudando o valor do *delay*).
 
 ## SCD4x
+Agora vamos testar o sensor SCD41 e observar as leituras do mesmo. Para tanto, iremos repetir alguns passos do tópico anterior. No diretório **platformio-learn**, criamos outro diretório para armazenar as configurações do SCD41, criaremos outro arquivo do tipo *.ini*, um diretório *src* e neste diretório criaremos o arquivo *main.cpp*.
 
+Desta vez, os códgigo utilizados serão diferentes. No arquivo *platformio.ini*, usaremos o seguinte código:
+```
+[env:d1_mini]
+platform = espressif8266
+board = d1_mini
+framework = arduino
+monitor_speed = 115200
+
+lib_deps =
+  dfrobot/DFRobot_SCD4X
+```
+
+Dentro do diretório *src*, que deverá ser criado, no arquivo *main.cpp* deverá ser utilizado do seguinte código: 
+## SCD4x + MQTT
