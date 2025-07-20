@@ -137,4 +137,4 @@ pio device monitor
 Para encerrar o serviço, tecle *Ctrl+C*.
 
 ## SCD4x + MQTT
-Neste tópico, refaremos o mesmo fluxo anterior, porém, usaremos códigos diferentes. Desta vez, os dados coletados pelo sensor serão enviados através do wifi. A placa D1 Mini contém um placa wifi e permite enviar os dados ao Raspberry através desta rede. Posteriormente, enviaremos estes dados via MQTT para a plataforma Node-Red.
+Neste tópico, refaremos o mesmo fluxo anterior, porém, usaremos códigos diferentes. Desta vez, os dados coletados pelo sensor serão enviados através do wifi. A placa D1 Mini contém um placa wifi e permite enviar os dados ao Raspberry através desta rede. Posteriormente, enviaremos estes dados via MQTT para a plataforma **Node-Red**.
