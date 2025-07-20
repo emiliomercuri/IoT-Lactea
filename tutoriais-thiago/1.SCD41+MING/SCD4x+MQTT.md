@@ -94,7 +94,15 @@ void loop() {
 }
 ```
 Para salvar e fechar, tecle *Ctrl+S* e *Ctrl+Q*.
-
+Para retornar ao diretório anterior (**wemos-blink**), digite:
+```
+cd ..
+```
+Agora enviamos as configurações para a placa D1 Mini através do seguinte código:
+```
+pio run --target upload
+```
+Após alguns instantes, o download das configurações terá terminado e poderemos observar o led da placa D1 Mini piscar em intervalos de 0,5 segundos (podemos alterar este tempo mudando o valor do *delay*).
 
 ## SCD4x
 
