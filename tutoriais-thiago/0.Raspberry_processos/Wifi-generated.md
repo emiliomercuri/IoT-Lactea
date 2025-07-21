@@ -15,6 +15,11 @@ Caso o dispositivo *wlan0* esteja desconectado, deverá ser ativado pelo seguint
 sudo nmcli device wifi hotspot ssid <hotspot name> password <hotspot password> ifname wlan0
 ```
 
+Para visualizar a senha, utilize:
+```
+nmcli dev wifi show-password
+```
+
 ## Tornar prioritário o processo de gerar o wifi sempre que houver um boot no Raspberry Pi
 
 Para garantir que após um boot, o Raspberry volte a gerar a rede wifi, utilize os seguintes passos:
