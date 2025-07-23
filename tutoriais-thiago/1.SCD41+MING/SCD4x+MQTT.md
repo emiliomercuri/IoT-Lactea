@@ -137,6 +137,25 @@ pio device monitor
 Para encerrar o serviço, tecle *Ctrl+C*.
 
 ## SCD4x + MQTT
-Neste tópico, refaremos o mesmo fluxo anterior, porém, usaremos códigos diferentes. Desta vez, os dados coletados pelo sensor serão enviados através do wifi. A placa D1 Mini contém um placa wifi e permite enviar os dados ao Raspberry através desta rede. Posteriormente, enviaremos estes dados via MQTT para a plataforma **Node-Red**.
+Neste tópico, refaremos o mesmo fluxo anterior, porém, usaremos códigos diferentes. Desta vez, os dados coletados pelo sensor serão enviados através do wifi. A placa D1 Mini contém um placa wifi e permite enviar os dados ao Raspberry através desta rede via protocolo MQTT. Posteriormente, enviaremos estes dados via MQTT para a plataforma **Node-Red**.
 
 Vamos começar com a criação de uma rede wifi através do Raspberry Pi para que a placa D1 Mini possa se conectar e enviar os dados por esta rede. Para tanto, podemos utilizar o seguinte tutorial: https://github.com/emiliomercuri/IoT-Lactea/blob/main/tutoriais-thiago/0.Raspberry_processos/Wifi-generated.md
+
+Após a configuração da rede wifi, iremos repetir os passos de criar um diretório específico para o desenvolvimento destas atividades. Nesta atividade ocorrerão apenas 2 mudanças significativas: o código no arquivo *platformio.ini* e no arquivo *main.cpp*.
+
+No arquivo **platformio.ini**, utilize o seguinte código:
+```
+[env:d1_mini]
+platform = espressif8266
+board = d1_mini
+framework = arduino
+monitor_speed = 115200
+
+lib_deps =
+  dfrobot/DFRobot_SCD4X
+  knolleary/PubSubClient
+```
+Neste código foi adicionada a biblioteca PubSubClient para envio dos dados via MQTT.
+
+O código utilizado para o arquivo **main.cpp** está no seguinte endereço: https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/SCD4x%2BMQTT.cpp
+
