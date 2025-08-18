@@ -30,7 +30,7 @@ Após estes passos, crie uma pasta chamada *bin* com o seguinte comando:
 ```
 mkdir bin
 ```
-Posteriormente, mova a pasta para os diretorios da PlatformIo com os seguinte comandos:
+Posteriormente, crie links simbólicos para o PlatformIo com os seguinte comandos:
 ```
 ln -s ~/.platformio/penv/bin/platformio ~/.local/bin/platformio
 ln -s ~/.platformio/penv/bin/pio ~/.local/bin/pio
