@@ -28,7 +28,7 @@ Para salvar, aperte *Ctrl+S* e para fechar, aperte *Ctrl+Q*
 
 Após estes passos, crie uma pasta chamada *bin* com o seguinte comando:
 ```
-mkdir bin
+mkdir -p ~/.local/bin
 ```
 Posteriormente, crie links simbólicos para o PlatformIo com os seguinte comandos:
 ```
