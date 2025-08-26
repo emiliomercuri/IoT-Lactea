@@ -159,3 +159,16 @@ Neste código foi adicionada a biblioteca PubSubClient para envio dos dados via 
 
 O código utilizado para o arquivo **main.cpp** está no seguinte endereço: https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/SCD4x%2BMQTT.cpp
 
+### Nodemcu
+No caso de utilizar o microcontrolador Nodemcu, é preciso modificar o código **platformio.ini**. ALtera-se apenas as 3 primeiras linhas, desta forma o código fica:
+```
+[env:nodemcuv2]
+platform = espressif8266
+board = nodemcuv2
+framework = arduino
+monitor_speed = 115200
+
+lib_deps =
+  dfrobot/DFRobot_SCD4X
+  knolleary/PubSubClient
+```
