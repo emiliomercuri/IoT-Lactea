@@ -155,9 +155,8 @@ Uma mensagem semelhante a essa deverá aparecer:
 
 <img width="868" height="507" alt="image" src="https://github.com/user-attachments/assets/3ba60b96-6b9e-4eda-a795-4a9f94e76b04" />
 
-
-
-Crie o script em linguagem Python que fará a leitura e armazenamento dos dados do sensor de NO2:
+\n
+Pause a operação utilizando o atalho "Ctrl + C". AgoraCrie o script em linguagem Python que fará a leitura e armazenamento dos dados do sensor de NO2:
 
 ```bash
 micro aquisicao_tutorial_no2.py
