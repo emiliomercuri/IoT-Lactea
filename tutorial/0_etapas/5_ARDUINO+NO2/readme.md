@@ -26,3 +26,8 @@
 
 
 # 3. Software
+
+## 3.1 Configuração do Arduino
+
+Para começar, crie uma pasta onde será inserido as instruções e códigos para a leitura do sensor:
+
