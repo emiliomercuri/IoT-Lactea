@@ -156,7 +156,11 @@ Uma mensagem semelhante a essa deverá aparecer:
 <img width="868" height="507" alt="image" src="https://github.com/user-attachments/assets/3ba60b96-6b9e-4eda-a795-4a9f94e76b04" />
 
 
-Pause a operação utilizando o atalho "Ctrl + C". Agora crie o script em linguagem Python que fará a leitura e armazenamento dos dados do sensor de NO2:
+Pause a operação utilizando o atalho "Ctrl + C". 
+
+## 3.2 Criação do script em Python para leitura e armazenamento de dados
+
+Para criar o script em linguagem Python que fará a leitura e armazenamento dos dados do sensor de NO2, rode na linha de comando:
 
 ```bash
 micro aquisicao_tutorial_no2.py
@@ -268,6 +272,23 @@ Salve as alterações e saia do ambiente de edição. Agora, para tornar o scrip
 chmod +x aquisicao_tutorial_no2.py
 ```
 
+Agora, você pode rodar o script na para verificar se ele está funcionando:
+
+```bash
+aquisicao_tutorial_no2.py
+```
+
+Para o caso desse código, nenhuma resposta deverá aparecer pois os dados estão sendo armazenados no arquivo .csv. Para checar se os dados estão sendo devidamente guardados, deixe o script rodando por alguns segundos e depois pare-o com "Ctrl + C". Agora abra a pasta "data" e digite na linha de comando o seguinte código:
+
+```bash
+tail NO2_Tutorial.csv
+```
+
+Uma resposta como essa deverá aparecer:
+
+<img width="725" height="136" alt="image" src="https://github.com/user-attachments/assets/6dda8b37-7ea1-4926-98a0-a60a3020119e" />
+
+Pause a operação com "Ctrl + Q". Agora, para que o script seja iniciado automaticamente quando o Raspbery Pi for iniciado, você pode criar um serviço seguindo esse tutorial: https://github.com/emiliomercuri/IoT-Lactea/blob/main/tutorial/Service_for_python_aquisition.md
 
 
 
