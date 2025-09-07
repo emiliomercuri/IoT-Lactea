@@ -155,8 +155,8 @@ Uma mensagem semelhante a essa deverá aparecer:
 
 <img width="868" height="507" alt="image" src="https://github.com/user-attachments/assets/3ba60b96-6b9e-4eda-a795-4a9f94e76b04" />
 
-\n
-Pause a operação utilizando o atalho "Ctrl + C". AgoraCrie o script em linguagem Python que fará a leitura e armazenamento dos dados do sensor de NO2:
+
+Pause a operação utilizando o atalho "Ctrl + C". Agora crie o script em linguagem Python que fará a leitura e armazenamento dos dados do sensor de NO2:
 
 ```bash
 micro aquisicao_tutorial_no2.py
@@ -180,8 +180,8 @@ hora = datetime.datetime.now().strftime("%Y-%m-%d_%H")
 #hora = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M")
 hora_atual = hora
 
-if path.exists("/root/lactea/data/") != True:
-    myCmd = 'mkdir /root/lactea/data/'
+if path.exists("/home/lactea/platformio_tutorial_no2/data/") != True:
+    myCmd = 'mkdir /home/lactea/platformio_tutorial_no2/data/'
     os.system(myCmd)        
 
 #########
@@ -242,7 +242,7 @@ while hora == hora_atual:
         #new_row = new_row.rename(index={0: 'Time', 1: 'NO2(ppb)'})  
         #print(new_row)
         df = pd.concat([df,new_row],ignore_index=False)
-        df.to_csv(f"/root/lactea/data/NO2_IC-Daniel.csv", sep=',', index=True)
+        df.to_csv(f"/home/lactea/platformio_tutorial_no2/data/NO2_Tutorial.csv", sep=',', index=True)
         #df[col_a] = col_f           
         #print(col_a + col_f)
         #print(df)
@@ -252,7 +252,7 @@ while hora == hora_atual:
     data = datetime.datetime.now().strftime("%Y-%m-%d")
     
     if hora != hora_atual:
-        df.to_csv(f"/root/lactea/data/NO2_IC-Daniel_{hora_atual}.csv", sep=',', index=True)
+        df.to_csv(f"/home/lactea/platformio_tutorial_no2/data/NO2_Tutorial_{hora_atual}.csv", sep=',', index=True)
         df = pd.DataFrame(columns=['NO2(ppb)'])
         hora_atual = hora
 
@@ -260,7 +260,7 @@ while hora == hora_atual:
 ser.close()
 ```
 
-**Importante:** Tenha certeza que a porta serial incluída no código é a mesma conectada ao Arduino. Ademais, troque os valores de sensibilidade dos eletrodos para que sejam os mesmos enviados pelo fabricante.
+**Importante:** Tenha certeza que a porta serial incluída no código é a mesma conectada ao Arduino e troque os valores de sensibilidade dos eletrodos para que sejam os mesmos enviados pelo fabricante. Além disso, modifique o endereço onde será guardado os dados. Aqui, o endereço é "/home/lactea/platformio_tutorial_no2/". No seu caso, você pode descobrí-lo rodando o comando ´´´pwd´´´. Por fim, modifique o nome do arquivo .csv onde será armazenado os dados se julgar necessário.
 
 Salve as alterações e saia do ambiente de edição. Agora, para tornar o script executável, rode na linha de comando:
 
