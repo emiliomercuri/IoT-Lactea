@@ -139,13 +139,31 @@ void loop()
 //  -- END OF FILE --
 ```
 
-Novamente, salve o conteúdo com "Ctrl + S" e saia com "Crtl + Q". Agora, saia da pasta "source" e crie o código em linguagem Python que fará a leitura e armazenamento dos dados do sensor de NO2:
+Novamente, salve o conteúdo com "Ctrl + S" e saia com "Crtl + Q". Agora, saia da pasta "source" e use o seguinte código na linha de comando para compilar e enviar o projeto para o Arduino:
 
 ```bash
-micro aquisicao_tutorial_no2
+pio run --target upload
 ```
 
-Agora cole o seguinte código no arquivo:
+Para verificar se os dados estão sendo enviados para a porta serial do Raspberry Pi, rode:
+
+```bash
+pio device monitor
+````
+
+Uma mensagem semelhante a essa deverá aparecer:
+
+<img width="868" height="507" alt="image" src="https://github.com/user-attachments/assets/3ba60b96-6b9e-4eda-a795-4a9f94e76b04" />
+
+
+
+Crie o script em linguagem Python que fará a leitura e armazenamento dos dados do sensor de NO2:
+
+```bash
+micro aquisicao_tutorial_no2.py
+```
+
+Cole o seguinte código no arquivo:
 
 ```bash
 #!/usr/bin/python
@@ -244,3 +262,13 @@ ser.close()
 ```
 
 **Importante:** Tenha certeza que a porta serial incluída no código é a mesma conectada ao Arduino. Ademais, troque os valores de sensibilidade dos eletrodos para que sejam os mesmos enviados pelo fabricante.
+
+Salve as alterações e saia do ambiente de edição. Agora, para tornar o script executável, rode na linha de comando:
+
+```bash
+chmod +x aquisicao_tutorial_no2.py
+```
+
+
+
+
