@@ -290,5 +290,119 @@ Uma resposta como essa deverá aparecer:
 
 Pause a operação com "Ctrl + Q". Agora, para que o script seja iniciado automaticamente quando o Raspbery Pi for iniciado, você pode criar um serviço seguindo esse tutorial: https://github.com/emiliomercuri/IoT-Lactea/blob/main/tutorial/Service_for_python_aquisition.md
 
+## Agora para três arduinos simultâneamente
 
+Criar um platformio.ini, mas com três ambientes:
+
+```bash
+[env:uno0]
+platform = atmelavr
+board = uno
+framework = arduino
+monitor_speed = 115200
+upload_port = /dev/ttyUSB0
+lib_deps =
+  RobTillaart/ADS1X15@^0.4.0
+
+[env:uno1]
+platform = atmelavr
+board = uno
+framework = arduino
+monitor_speed = 115200
+upload_port = /dev/ttyUSB1
+lib_deps =
+  RobTillaart/ADS1X15@^0.4.0
+
+[env:uno2]
+platform = atmelavr
+board = uno
+framework = arduino
+monitor_speed = 115200
+upload_port = /dev/ttyUSB2
+lib_deps =
+  RobTillaart/ADS1X15@^0.4.0
+```
+
+Criar somente uma pasta source, pois estamos utilizando o mesmo arquivo main.cpp:
+
+```bash
+mkdir src
+cd src
+micro main.cpp
+```
+
+O código do arquivo main.cpp será o mesmo:
+
+```bash
+#include <Arduino.h>
+//
+//    FILE: ADS_read.ino
+//  AUTHOR: Rob.Tillaart
+// PURPOSE: read analog inputs - straightforward.
+//     URL: https://github.com/RobTillaart/ADS1X15
+
+//  test
+//  connect 1 potmeter per port.
+//
+//  GND ---[   x   ]------ 5V
+//             |
+//
+//  measure at x (connect to AIN0).
+
+
+#include "ADS1X15.h"
+
+ADS1115 ADS(0x48);
+
+
+void setup() 
+{
+  Serial.begin(115200);
+  Serial.println(__FILE__);
+  Serial.print("ADS1X15_LIB_VERSION: ");
+  Serial.println(ADS1X15_LIB_VERSION);
+
+  Wire.begin();
+  ADS.begin();
+}
+
+
+void loop() 
+{
+  ADS.setGain(0);
+
+  //int16_t val_0 = ADS.readADC(0);  
+  int16_t val_1 = ADS.readADC(1);  
+  //int16_t val_2 = ADS.readADC(2);  
+  int16_t val_3 = ADS.readADC(3);  
+
+  float f = ADS.toVoltage(1);  //  voltage factor
+
+  Serial.print("\tAnalogs1+3: "); 
+  Serial.print('\t'); 
+  Serial.print(val_1); 
+  Serial.print('\t'); 
+  Serial.print(val_1 * f, 3); 
+  Serial.print('\t'); 
+  Serial.print(val_3);
+  Serial.print('\t');   
+  Serial.println(val_3 * f, 3);
+  //Serial.println();
+
+  delay(1000);
+}
+
+
+//  -- END OF FILE --
+```
+
+Agora, salve e feche o arquivo. Depois saia da pasta src e faça o upload para cada um dos arduinos:
+
+```bash
+pio run -e uno0 --target upload
+pio run -e uno1 --target upload
+pio run -e uno2 --target upload
+```
+
+Agora criaremos um Script Python para cada um dos sensores, já que cada um vem com valores de sensibilidade próprios de fábrica:
 
