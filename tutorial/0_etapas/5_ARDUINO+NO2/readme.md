@@ -406,3 +406,4 @@ pio run -e uno2 --target upload
 
 Agora criaremos um Script Python para cada um dos sensores, já que cada um vem com valores de sensibilidade próprios de fábrica:
 
+* O que eu modifiquei no código: endereço dos dados, porta serial e sensibilidade
