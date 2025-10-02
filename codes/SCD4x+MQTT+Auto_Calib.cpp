@@ -10,12 +10,12 @@ RTC_DS3231 rtc;
 // ------------------------
 // CONFIG WIFI E MQTT
 // ------------------------
-const char* ssid = "lactea-rasp4-thiago";
-const char* password = "iotempire";
-const char* mqtt_server = "200.17.235.75";
+const char* ssid = "*********";
+const char* password = "******";
+const char* mqtt_server = "********";
 const int mqtt_port = 1883;
-const char* mqtt_user = "pi";
-const char* mqtt_password = "iotempire";
+const char* mqtt_user = "********";
+const char* mqtt_password = "********";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
