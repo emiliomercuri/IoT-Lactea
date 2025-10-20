@@ -159,6 +159,11 @@ Neste código foi adicionada a biblioteca PubSubClient para envio dos dados via 
 
 O código utilizado para o arquivo **main.cpp** está no seguinte endereço: https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/SCD4x%2BMQTT.cpp
 
+**Para o código com a Auto calibração do sensor**, utilizar/acrescentar a seguinte biblioteca:
+```
+lib_deps = AdafruitRTClib
+```
+
 ### Nodemcu
 No caso de utilizar o microcontrolador Nodemcu, é preciso modificar o código **platformio.ini**. ALtera-se apenas as 3 primeiras linhas, desta forma o código fica:
 ```
