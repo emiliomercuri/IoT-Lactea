@@ -161,7 +161,9 @@ O código utilizado para o arquivo **main.cpp** está no seguinte endereço: htt
 
 **Para o código com a Auto calibração do sensor**, utilizar/acrescentar a seguinte biblioteca:
 ```
-lib_deps = AdafruitRTClib
+lib_deps =
+  adafruit/Adafruit BusIO@^1.16.0
+  adafruit/Adafruit Unified Sensor@^1.1.14
 ```
 
 ### Nodemcu
