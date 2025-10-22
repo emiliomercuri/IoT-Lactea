@@ -2,10 +2,7 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <Wire.h>
-#include <RTClib.h>
-
-// RTC
-RTC_DS3231 rtc;
+#include <time.h>
 
 // ------------------------
 // CONFIG WIFI E MQTT
@@ -30,7 +27,8 @@ DFRobot_SCD4X SCD4X(&Wire, SCD4X_I2C_ADDR);
 // ------------------------
 const int horaCalibracao = 14;
 const int minutoCalibracao = 30;
-bool calibradoHoje = false;  // controle diário
+bool calibradoHoje = false;
+bool calibrando = false;
 
 // ------------------------
 // FUNÇÕES AUXILIARES
@@ -38,10 +36,11 @@ bool calibradoHoje = false;  // controle diário
 void reconnectMQTT() {
   while (!client.connected()) {
     Serial.print("Conectando ao MQTT...");
-    if (client.connect("ESP32Client", mqtt_user, mqtt_password)) {
-      Serial.println("conectado!");
+    if (client.connect("ESP8266Client", mqtt_user, mqtt_password)) {
+      Serial.println(" conectado!");
+      client.publish("sensor/status", "MQTT conectado", true);
     } else {
-      Serial.print("falhou, rc=");
+      Serial.print(" falhou, rc=");
       Serial.print(client.state());
       Serial.println(" tentando novamente em 5s...");
       delay(5000);
@@ -59,27 +58,47 @@ void connectWiFi() {
   Serial.println(" conectado!");
 }
 
+void initTime() {
+  configTime(-3 * 3600, 0, "pool.ntp.org", "time.nist.gov"); // Fuso horário -3 (Brasília)
+  Serial.print("Aguardando sincronização NTP");
+  time_t now = time(nullptr);
+  while (now < 100000) {
+    delay(500);
+    Serial.print(".");
+    now = time(nullptr);
+  }
+  Serial.println(" sincronizado!");
+}
+
 void auto_calibration() {
+  calibrando = true;
+  client.publish("sensor/status", "Iniciando calibração automática...", true);
   Serial.println("Iniciando calibração automática...");
+
   SCD4X.setAutoCalibMode(true);
-  delay(60000); // 1 minuto calibrando
+  unsigned long start = millis();
+  while (millis() - start < 60000) {
+    client.loop();
+    delay(100);
+  }
   SCD4X.setAutoCalibMode(false);
+
+  calibrando = false;
+  calibradoHoje = true;
+
+  client.publish("sensor/status", "Calibração concluída com sucesso!", true);
   Serial.println("Calibração concluída.");
 }
 
 // ------------------------
 // SETUP
 // ------------------------
-void setup(void) {
+void setup() {
   Serial.begin(115200);
   connectWiFi();
+  initTime();
   client.setServer(mqtt_server, mqtt_port);
 
-  // Inicia comunicação I2C e RTC
-  Wire.begin();
-  rtc.begin();
-
-  // Inicializa o sensor
   while (!SCD4X.begin()) {
     Serial.println("Falha na comunicação com o sensor.");
     delay(3000);
@@ -88,32 +107,33 @@ void setup(void) {
   SCD4X.enablePeriodMeasure(SCD4X_STOP_PERIODIC_MEASURE);
   SCD4X.setTempComp(4.0);
   SCD4X.setSensorAltitude(935);
-
   SCD4X.enablePeriodMeasure(SCD4X_START_PERIODIC_MEASURE);
+
   Serial.println("Sensor iniciado com sucesso.");
+  client.publish("sensor/status", "Sensor iniciado com sucesso", true);
 }
 
 // ------------------------
 // LOOP PRINCIPAL
 // ------------------------
 void loop() {
-  if (!client.connected()) {
-    reconnectMQTT();
-  }
+  if (WiFi.status() != WL_CONNECTED) connectWiFi();
+  if (!client.connected()) reconnectMQTT();
   client.loop();
 
-  // Verifica horário para calibração
-  DateTime now = rtc.now();
+  // Obtém hora atual
+  time_t now = time(nullptr);
+  struct tm* timeinfo = localtime(&now);
 
-  if (now.hour() == horaCalibracao && now.minute() == minutoCalibracao) {
-    if (now.second() <= 10 && !calibradoHoje) {   // tolerância de 10s
+  // Verifica horário de calibração
+  if (timeinfo->tm_hour == horaCalibracao && timeinfo->tm_min == minutoCalibracao) {
+    if (timeinfo->tm_sec <= 10 && !calibradoHoje) {
       auto_calibration();
-      calibradoHoje = true;  // evita rodar mais de uma vez no mesmo dia
     }
   }
 
-  // Reseta flag à meia-noite para permitir nova calibração no próximo dia
-  if (now.hour() == 0 && now.minute() == 0 && now.second() == 0) {
+  // Reseta flag à meia-noite
+  if (timeinfo->tm_hour == 0 && timeinfo->tm_min == 0 && timeinfo->tm_sec == 0) {
     calibradoHoje = false;
   }
 
@@ -122,17 +142,30 @@ void loop() {
     DFRobot_SCD4X::sSensorMeasurement_t data;
     SCD4X.readMeasurement(&data);
 
-    Serial.printf("CO2: %d ppm | Temp: %.2f C | Hum: %.2f RH\n", 
-                  data.CO2ppm, data.temp, data.humidity);
+    // Formata data/hora
+    char datetimeStr[25];
+    snprintf(datetimeStr, sizeof(datetimeStr), "%04d-%02d-%02d %02d:%02d:%02d",
+             timeinfo->tm_year + 1900,
+             timeinfo->tm_mon + 1,
+             timeinfo->tm_mday,
+             timeinfo->tm_hour,
+             timeinfo->tm_min,
+             timeinfo->tm_sec);
 
-    // Publicação via MQTT
-    char payload[128];
+    Serial.printf("[%s] CO2: %d ppm | Temp: %.2f C | Hum: %.2f RH | Calibrado: %s\n",
+                  datetimeStr, data.CO2ppm, data.temp, data.humidity,
+                  calibradoHoje ? "true" : "false");
+
+    // Publica MQTT
+    char payload[256];
     snprintf(payload, sizeof(payload),
-             "{\"co2\":%d, \"temp\":%.2f, \"hum\":%.2f}",
-             data.CO2ppm, data.temp, data.humidity);
+             "{\"datetime\":\"%s\",\"co2\":%d,\"temp\":%.2f,\"hum\":%.2f,\"calibrado\":%s}",
+             datetimeStr, data.CO2ppm, data.temp, data.humidity,
+             calibradoHoje ? "true" : "false");
 
-    client.publish("sensor/ambiente", payload);
+    client.publish("sensor/ambiente", payload, true);
   }
 
-  delay(1000); // loop rápido para garantir precisão no RTC
+  delay(5000);
 }
+
