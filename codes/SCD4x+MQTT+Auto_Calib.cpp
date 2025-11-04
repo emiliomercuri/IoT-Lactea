@@ -133,7 +133,7 @@ void loop() {
   }
 
   // Reseta flag à meia-noite
-  if (timeinfo->tm_hour == 0 && timeinfo->tm_min == 0 && timeinfo->tm_sec == 0) {
+  if (timeinfo->tm_hour == 0 && timeinfo->tm_min == 0) {
     calibradoHoje = false;
   }
 
