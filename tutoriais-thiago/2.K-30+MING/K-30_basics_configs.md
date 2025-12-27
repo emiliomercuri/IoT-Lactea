@@ -120,5 +120,7 @@ Dentro do diretório das configurações para o Arduino, crie o seguinte arquivo
 ```
 micro k-30-arduino.ino
 ```
+Então cole o código: (codes/k-30+Arduino.cpp)
+
 
 
