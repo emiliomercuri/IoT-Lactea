@@ -120,7 +120,21 @@ Dentro do diretório das configurações para o Arduino, crie o seguinte arquivo
 ```
 micro k-30-arduino.ino
 ```
-Então cole o código: ([codes/k-30+Arduino.cpp](https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/k-30%2BArduino.cpp))
+Então cole o código: [codes/k-30+Arduino.cpp](https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/k-30%2BArduino.cpp)
 
+Após, compile o código com o comando:
+```
+arduino-cli compile --fqbn arduino:avr:nano:cpu=atmega328old
+```
+
+Faça o upload:
+```
+arduino-cli upload -p /dev/ttyUSB0 --fqbn arduino:avr:nano:cpu=atmega328old
+```
+
+Teste o Serial para ver se os dados estão chegando:
+```
+arduino-cli monitor -p /dev/ttyUSB0 -c baudrate=9600
+```
 
 
