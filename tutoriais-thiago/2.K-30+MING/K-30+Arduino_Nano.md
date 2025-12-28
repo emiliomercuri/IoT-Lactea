@@ -60,7 +60,7 @@ micro read_serial.py
 ```
 Utilize o seguinte código: https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/K-30%2BRead_serial.py
 
-E execute:
+E execute com o comando:
 ```
 python3 read_serial.py
 ```
