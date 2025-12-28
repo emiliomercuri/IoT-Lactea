@@ -79,7 +79,7 @@ mkdir -p ~/.local/bin
 mv ~/bin/arduino-cli ~/.local/bin/
 ```
 
-Edite o .bashrc:
+Edite o arquivo *.bashrc*:
 ```
 micro ~/.bashrc
 ```
@@ -126,7 +126,7 @@ Pode ser observada as opções disponíveis também:
 arduino-cli board listall nano
 ```
 
-Dentro do diretório das configurações para o Arduino, crie o seguinte arquivo:
+Dentro do diretório das configurações para o Arduino, crie o um arquivo do tipo *.ino* para criar o código que será carregado no Arduino, por exemplo:
 ```
 micro k-30-arduino.ino
 ```
