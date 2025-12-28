@@ -54,6 +54,16 @@ Para ter certeza de que houve a instalação, verifique a versão do Python inst
 ```
 python3 -c "import serial; print(serial.__version__)"
 ```
+Para fazer a leitura dos dados, crie um arquivo de texto *.py*, por exemplo:
+```
+micro read_serial.py
+```
+Utilize o seguinte código: [https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/K-30%2BRead_serial.py)
+
+E execute:
+```
+python3 read_serial.py
+```
 
 # Instalar o IDE do Arduino no Raspberry
 
