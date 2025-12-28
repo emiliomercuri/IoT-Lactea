@@ -58,7 +58,7 @@ Para fazer a leitura dos dados, crie um arquivo de texto *.py*, por exemplo:
 ```
 micro read_serial.py
 ```
-Utilize o seguinte código: [https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/K-30%2BRead_serial.py)
+Utilize o seguinte código: https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/K-30%2BRead_serial.py
 
 E execute:
 ```
