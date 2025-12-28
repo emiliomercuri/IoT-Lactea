@@ -14,7 +14,12 @@ Crie uma pasta para realizar as configurações:
 ```
 mkdir k-30
 ```
-**Boa prática** é criar um diretório para as configurações utilizadas no Python separado do diretório das configurações do Arduino.
+**Boa prática** é criar um diretório para as configurações utilizadas no Python separado do diretório das configurações do Arduino. Por exemplo:
+```
+mkdir k-30_arduino
+mkdir k-30_python
+```
+Então realize as configurações em cada diretório, respectivamente.
 
 # Instalar o pacote para o Arduino
 
