@@ -70,9 +70,9 @@ E execute com o comando:
 python3 read_serial.py
 ```
 
-# Instalar o IDE do Arduino no Raspberry
+# Instalar o Arduino CLI no Raspberry
 
-Esta etapa permite carregar códigos no Arduino através do IDE.
+Esta etapa permite carregar códigos no Arduino.
 Utilize o seguinte código:
 ```
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
@@ -152,4 +152,35 @@ Teste o Serial para ver se os dados estão chegando:
 arduino-cli monitor -p /dev/ttyUSB0 -c baudrate=9600
 ```
 
+## Fazer o upload utilizando o PlatformIO
 
+Esta etapa terá o mesmo resultado que utilizar o Arduino CLI, porém, será utilizado o PlatformIO. Para tanto, crie um arquivo de texto *.ini*, como já feito em outros tutoriais:
+```
+micro platformio.ini
+```
+E cole o seguinte código:
+```
+[env:nano]
+platform = atmelavr
+board = nanoatmega328
+framework = arduino
+upload_port = /dev/ttyUSB0
+monitor_speed = 9600
+```
+
+Se for **Old Bootloader**:
+```
+board = nanoatmega328new
+```
+
+Então utilize o mesmo código *.cpp* do Arduino acima: [codes/k-30+Arduino.cpp](https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/k-30%2BArduino.cpp)
+
+Compile e grave:
+```
+pio run -t upload
+```
+
+Leia os dados:
+```
+pio device monitor
+```
