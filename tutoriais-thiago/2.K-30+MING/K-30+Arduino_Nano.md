@@ -185,3 +185,11 @@ Leia os dados:
 ```
 pio device monitor
 ```
+
+**Para visualizar os dados o Node Red deve estar pausado!**
+
+Use:
+```
+sudo systemctl start node-red
+sudo systemctl stop node-red
+```
