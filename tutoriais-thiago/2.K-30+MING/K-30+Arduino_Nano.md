@@ -158,19 +158,20 @@ Esta etapa terá o mesmo resultado que utilizar o Arduino CLI, porém, será uti
 ```
 micro platformio.ini
 ```
-E cole o seguinte código:
+E cole o seguinte código, caso seja Older:
 ```
 [env:nano]
 platform = atmelavr
 board = nanoatmega328
 framework = arduino
-upload_port = /dev/ttyUSB0
-monitor_speed = 9600
-```
 
-Se for **Old Bootloader**:
-```
-board = nanoatmega328new
+upload_port = /dev/ttyUSB0
+upload_protocol = arduino
+
+board_build.mcu = atmega328p
+board_build.f_cpu = 16000000L
+
+board_upload.speed = 57600   ; velocidade do OLD bootloader
 ```
 
 Então utilize o mesmo código *.cpp* do Arduino acima: [codes/k-30+Arduino.cpp](https://github.com/emiliomercuri/IoT-Lactea/blob/main/codes/k-30%2BArduino.cpp)
