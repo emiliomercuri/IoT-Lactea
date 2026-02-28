@@ -10,8 +10,11 @@ Este repositório contém o guia e os códigos necessários para integrar o sens
 ## 🔌 Passo 0: Conexões Físicas (Hardware)
 Antes de colocar a mão no terminal, precisamos garantir que o Wemos D1 Mini esteja conversando corretamente com o PMS7003. Para isso, utilizaremos jumpers para conectar o sensor à placa.
 
-Diagrama de Montagem[INSIRA AQUI O SEU DIAGRAMA DO FRITZING]
-
+### PMS7003   WEMOS D1 MINI
+VCC   5V
+GND   GND
+RX    D6 (GPIO12)
+TX    D7 (GPIO13)
 ## 🚀 Passo 1: Preparação do Sistema (Raspberry Pi)
 Antes de programar a placa, precisamos garantir que o Raspberry Pi tenha as ferramentas necessárias e permissão para acessar as portas USB.
 
