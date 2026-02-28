@@ -63,16 +63,59 @@ cd IC_Daniel/wemos_pms7003
 Este arquivo diz ao PIO qual é a placa e quais bibliotecas usar.
 
 ```
-[env:d1_mini]
+[env:d1_mini_pro]
 platform = espressif8266
-board = d1_mini
+board = d1_mini_pro
 framework = arduino
-monitor_speed = 9600
+monitor_speed = 115200
+lib_deps =
+    knolleary/PubSubClient
 ```
 ### 4.3. Código Fonte (src/main.cpp)
-Aqui deve estar o código C++ que lê o sensor via Serial e imprime no console.
-(Dica: Use a biblioteca PMS Library de Mariusz Kierski no código para facilitar).
+```
+#include <SoftwareSerial.h>
 
+SoftwareSerial pmsSerial(D7, D6);
+
+#define FRAME_LENGTH 32
+
+uint8_t buffer[FRAME_LENGTH];
+
+void setup() {
+  Serial.begin(115200);
+  pmsSerial.begin(9600);
+  delay(2000);
+  Serial.println("Iniciando PMS7003...");
+}
+
+void loop() {
+
+  if (pmsSerial.available() >= FRAME_LENGTH) {
+
+    if (pmsSerial.peek() == 0x42) {
+
+      pmsSerial.readBytes(buffer, FRAME_LENGTH);
+
+      if (buffer[0] == 0x42 && buffer[1] == 0x4D) {
+
+        uint16_t pm1  = (buffer[10] << 8) | buffer[11];
+        uint16_t pm25 = (buffer[12] << 8) | buffer[13];
+        uint16_t pm10 = (buffer[14] << 8) | buffer[15];
+
+        Serial.print("PM1.0: ");
+        Serial.print(pm1);
+        Serial.print("  PM2.5: ");
+        Serial.print(pm25);
+        Serial.print("  PM10: ");
+        Serial.println(pm10);
+      }
+
+    } else {
+      pmsSerial.read(); // descarta byte desalinhado
+    }
+  }
+}
+```
 ### ⚡ Passo 5: Compilação e Flashing
 Com a Wemos conectada ao Raspberry Pi via USB:
 
