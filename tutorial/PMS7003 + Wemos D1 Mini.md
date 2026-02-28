@@ -7,6 +7,10 @@ Este repositório contém o guia e os códigos necessários para integrar o sens
 * Microcontrolador: Wemos D1 Mini (ESP8266).
 
 * Host: Raspberry Pi 3B+ (via USB).
+## 🔌 Passo 0: Conexões Físicas (Hardware)
+Antes de colocar a mão no terminal, precisamos garantir que o "cérebro" (Wemos D1 Mini) esteja conversando corretamente com os "olhos" (PMS7003). Para isso, utilizaremos jumpers para conectar o sensor à placa.
+#### ⚠️ Atenção: O sensor PMS7003 geralmente opera com níveis lógicos de 3.3V, mas requer 5V para o ventilador interno. A Wemos D1 Mini facilita isso por possuir ambos os pinos.
+Diagrama de Montagem[INSIRA AQUI O SEU DIAGRAMA DO FRITZING]
 
 ## 🚀 Passo 1: Preparação do Sistema (Raspberry Pi)
 Antes de programar a placa, precisamos garantir que o Raspberry Pi tenha as ferramentas necessárias e permissão para acessar as portas USB.
