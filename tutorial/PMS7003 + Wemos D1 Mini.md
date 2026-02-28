@@ -9,7 +9,7 @@ Este repositório contém o guia e os códigos necessários para integrar o sens
 * Host: Raspberry Pi 3B+ (via USB).
 ## 🔌 Passo 0: Conexões Físicas (Hardware)
 Antes de colocar a mão no terminal, precisamos garantir que o Wemos D1 Mini esteja conversando corretamente com o PMS7003. Para isso, utilizaremos jumpers para conectar o sensor à placa.
-#### ⚠️ Atenção: O sensor PMS7003 geralmente opera com níveis lógicos de 3.3V, mas requer 5V para o ventilador interno. A Wemos D1 Mini facilita isso por possuir ambos os pinos.
+
 Diagrama de Montagem[INSIRA AQUI O SEU DIAGRAMA DO FRITZING]
 
 ## 🚀 Passo 1: Preparação do Sistema (Raspberry Pi)
