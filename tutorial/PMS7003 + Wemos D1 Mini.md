@@ -13,8 +13,8 @@ Antes de colocar a mão no terminal, precisamos garantir que o Wemos D1 Mini est
 PMS7003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEMOS D1 MINI <br>
 &nbsp;VCC ---------- 5V <br>
 &nbsp;GND ---------- GND <br>
-&nbsp;RX  ---------- D6 (GPIO12) <br>
-&nbsp;TX  ---------- D7 (GPIO13) <br>
+&nbsp;&nbsp;RX  ---------- D6 (GPIO12) <br>
+&nbsp;&nbsp;TX  ---------- D7 (GPIO13) <br>
 ## 🚀 Passo 1: Preparação do Sistema (Raspberry Pi)
 Antes de programar a placa, precisamos garantir que o Raspberry Pi tenha as ferramentas necessárias e permissão para acessar as portas USB.
 
