@@ -49,7 +49,7 @@ python3 get-platformio.py
 ```
 ```
 # Exporta o PIO para o seu PATH (ajuste conforme seu diretório)
-source ~/.platformio/penv/bin/activate
+source /home/lactea1/.platformio/penv/bin/activate
 ```
 ## 📂 Passo 4: Configuração do Projeto (Firmware)
 Crie a estrutura do projeto para a Wemos D1 Mini.
