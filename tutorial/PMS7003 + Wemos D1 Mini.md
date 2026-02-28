@@ -1,14 +1,14 @@
-#Monitoramento de Material Particulado com PMS7003 e Wemos D1 Mini
+# Monitoramento de Material Particulado com PMS7003 e Wemos D1 Mini
 Este repositório contém o guia e os códigos necessários para integrar o sensor de material particulado PMS7003 a uma placa Wemos D1 Mini, enviando os dados para um Raspberry Pi 3B+.
 
-🛠️ Estrutura do Hardware
-Sensor: PMS7003 (Plantower).
+## 🛠️ Estrutura do Hardware
+* Sensor: PMS7003 (Plantower).
 
-Microcontrolador: Wemos D1 Mini (ESP8266).
+* Microcontrolador: Wemos D1 Mini (ESP8266).
 
-Host: Raspberry Pi 3B+ (via USB).
+* Host: Raspberry Pi 3B+ (via USB).
 
-🚀 Passo 1: Preparação do Sistema (Raspberry Pi)
+## 🚀 Passo 1: Preparação do Sistema (Raspberry Pi)
 Antes de programar a placa, precisamos garantir que o Raspberry Pi tenha as ferramentas necessárias e permissão para acessar as portas USB.
 
 1.1. Atualização do Sistema
@@ -18,10 +18,10 @@ sudo apt update && sudo apt upgrade -y
 O Linux, por padrão, restringe o acesso direto a dispositivos USB. As regras do PlatformIO permitem que você faça o upload do código sem precisar de sudo.
 
 Bash
-# Baixa e instala as regras de dispositivo
+## Baixa e instala as regras de dispositivo
 curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules
 
-# Reinicia o serviço de udev para aplicar as mudanças
+## Reinicia o serviço de udev para aplicar as mudanças
 sudo service udev restart
 sudo udevadm control --reload-rules
 sudo udevadm trigger
