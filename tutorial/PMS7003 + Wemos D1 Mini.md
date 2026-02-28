@@ -11,73 +11,80 @@ Este repositório contém o guia e os códigos necessários para integrar o sens
 ## 🚀 Passo 1: Preparação do Sistema (Raspberry Pi)
 Antes de programar a placa, precisamos garantir que o Raspberry Pi tenha as ferramentas necessárias e permissão para acessar as portas USB.
 
-1.1. Atualização do Sistema
-Bash
+### 1.1. Atualização do Sistema
+```
 sudo apt update && sudo apt upgrade -y
-1.2. Configuração de Permissões (udev rules)
+```
+### 1.2. Configuração de Permissões (udev rules)
 O Linux, por padrão, restringe o acesso direto a dispositivos USB. As regras do PlatformIO permitem que você faça o upload do código sem precisar de sudo.
 
-Bash
-## Baixa e instala as regras de dispositivo
+```
 curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules
-
-## Reinicia o serviço de udev para aplicar as mudanças
 sudo service udev restart
 sudo udevadm control --reload-rules
 sudo udevadm trigger
-🐍 Passo 2: Ambiente Python e Bibliotecas
+```
+## 🐍 Passo 2: Ambiente Python e Bibliotecas
 Para processar os dados que chegarão no Raspberry Pi, utilizamos um ambiente virtual para evitar conflitos de dependências.
 
-Bash
-# Cria e ativa o ambiente virtual
+```
 python3 -m venv env
 source env/bin/activate
+```
 
-# Instala bibliotecas para comunicação serial, manipulação de dados e MQTT
+## Instala bibliotecas para comunicação serial, manipulação de dados e MQTT
+* pyserial: Essencial para ler os dados da Wemos via porta USB.
+* pandas: Útil para organizar os logs de poeira em tabelas/CSVs.
+```
 pip install pyserial pandas paho-mqtt
-pyserial: Essencial para ler os dados da Wemos via porta USB.
+```
 
-pandas: Útil para organizar os logs de poeira em tabelas/CSVs.
-
-💻 Passo 3: Instalação do PlatformIO Core
+## 💻 Passo 3: Instalação do PlatformIO Core
 O PlatformIO é a ferramenta de linha de comando (CLI) que usaremos para compilar e subir o código para a Wemos.
 
-Bash
+```
 # Instalação via script oficial
 curl -fsSL -o get-platformio.py https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
 python3 get-platformio.py
-
+```
+```
 # Exporta o PIO para o seu PATH (ajuste conforme seu diretório)
 source ~/.platformio/penv/bin/activate
-📂 Passo 4: Configuração do Projeto (Firmware)
+```
+## 📂 Passo 4: Configuração do Projeto (Firmware)
 Crie a estrutura do projeto para a Wemos D1 Mini.
 
-4.1. Estrutura de Pastas
-Bash
+### 4.1. Estrutura de Pastas
+```
 mkdir -p IC_Daniel/wemos_pms7003/src
 cd IC_Daniel/wemos_pms7003
-4.2. Arquivo de Configuração (platformio.ini)
+```
+### 4.2. Arquivo de Configuração (platformio.ini)
 Este arquivo diz ao PIO qual é a placa e quais bibliotecas usar.
 
-Ini, TOML
+```
 [env:d1_mini]
 platform = espressif8266
 board = d1_mini
 framework = arduino
 monitor_speed = 9600
-4.3. Código Fonte (src/main.cpp)
+```
+### 4.3. Código Fonte (src/main.cpp)
 Aqui deve estar o código C++ que lê o sensor via Serial e imprime no console.
 (Dica: Use a biblioteca PMS Library de Mariusz Kierski no código para facilitar).
 
-⚡ Passo 5: Compilação e Flashing
+### ⚡ Passo 5: Compilação e Flashing
 Com a Wemos conectada ao Raspberry Pi via USB:
 
-Bash
+```
 # Compila o código e verifica erros
 pio run
-
+```
+```
 # Faz o upload (flash) para a placa
 pio run --target upload
-
+```
+```
 # Abre o monitor serial para ver os dados do PMS7003 chegando
 pio device monitor
+```
