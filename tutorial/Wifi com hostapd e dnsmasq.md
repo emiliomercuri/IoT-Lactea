@@ -79,13 +79,13 @@ Cole o conteúdo abaixo:
 ```conf
 interface=wlan0
 driver=nl80211
-ssid=lactea0_daniel
+ssid=<nome_dar_ede>
 hw_mode=g
 channel=7
 wmm_enabled=0
 auth_algs=1
 wpa=2
-wpa_passphrase=iotempire0
+wpa_passphrase=<senha_da_rede>
 wpa_key_mgmt=WPA-PSK
 rsn_pairwise=CCMP
 ```
