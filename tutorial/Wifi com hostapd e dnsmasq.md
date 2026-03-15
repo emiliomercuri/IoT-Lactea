@@ -16,7 +16,7 @@ sudo apt update
 sudo apt install dhcpcd5 hostapd dnsmasq iptables-persistent -y
 ```
 
-> [!IMPORTANT]
+> [!IMPORTANTE]
 > Se o serviço `dhcpcd` não estiver ativo após a instalação, certifique-se de habilitá-lo com: `sudo systemctl enable dhcpcd`.
 
 ---
