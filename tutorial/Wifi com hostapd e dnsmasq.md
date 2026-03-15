@@ -79,7 +79,7 @@ Cole o conteúdo abaixo:
 ```conf
 interface=wlan0
 driver=nl80211
-ssid=<nome_dar_ede>
+ssid=<nome_da_rede>
 hw_mode=g
 channel=7
 wmm_enabled=0
