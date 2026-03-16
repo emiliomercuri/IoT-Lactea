@@ -27,7 +27,7 @@ Para evitar que o Wi-Fi seja bloqueado por software no boot (o que derruba o `ho
 
 1. **Crie o arquivo do serviço:**
    ```bash
-   sudo nano /etc/systemd/system/wifi-unblock.service
+   sudo nano /etc/systemd/system/unblock-wifi.service
    ```
 
 2. **Cole o conteúdo abaixo:**
