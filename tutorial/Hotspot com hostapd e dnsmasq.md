@@ -117,7 +117,7 @@ sudo nano /etc/sysctl.d/99-ipforward.conf
 ```
 Adicione: `net.ipv4.ip_forward=1`. Na sequência, aplique com:
 ```bash
-`sudo sysctl --system`
+sudo sysctl --system
 ```
 ### Configurar NAT Permanente
 ```bash
