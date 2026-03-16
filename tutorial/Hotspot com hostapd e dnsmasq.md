@@ -10,7 +10,7 @@ No **RPi OS Lite**, muitos pacotes de gerenciamento de rede não vêm instalados
 
 ```bash
 # Atualiza a lista de repositórios
-sudo apt update
+sudo apt update && sudo apt upgrade
 
 # Instala o gerenciador de DHCP, o daemon do ponto de acesso, o DNS recursivo e utilitários de firewall
 sudo apt install dhcpcd5 hostapd dnsmasq iptables-persistent -y
