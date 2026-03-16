@@ -142,8 +142,33 @@ Dê permissão:
 sudo chmod +x /etc/rc.local
 ```
 ---
+## 🛡️ 4. Reforço de Persistência (IP Forwarding Service)
 
-## ✅ 4. Inicialização Final
+Como segurança adicional, criaremos um serviço que força o encaminhamento de IP caso o arquivo de configuração seja ignorado.
+
+1. **Crie o arquivo:** `sudo nano /etc/systemd/system/ipforward.service`
+2. **Cole o conteúdo:**
+```ini
+[Unit]
+Description=Enable IP forwarding for hotspot
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/sysctl -w net.ipv4.ip_forward=1
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+```
+3. **Ative:**
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable ipforward.service
+```
+
+---
+## ✅ 5. Inicialização Final
 
 Agora, desmascare e ative os serviços principais:
 
