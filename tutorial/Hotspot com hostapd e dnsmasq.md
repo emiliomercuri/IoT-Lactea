@@ -131,9 +131,13 @@ Abra o arquivo:
 ```bash
 sudo nano /etc/rc.local
 ```
-Adicione antes do `exit 0`:
+Adicione o seguinte:
 ```bash
+#!/bin/sh -e
+
 iptables-restore < /etc/iptables.ipv4.nat
+
+exit 0
 ```
 Garanta a permissão:
 ```bash
