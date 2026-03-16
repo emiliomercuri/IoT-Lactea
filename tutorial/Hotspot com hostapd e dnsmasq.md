@@ -115,9 +115,10 @@ Para que a internet passe da `eth0` (cabo) para a `wlan0` (Wi-Fi) de forma perma
 ```bash
 sudo nano /etc/sysctl.d/99-ipforward.conf
 ```
-Adicione: `net.ipv4.ip_forward=1`
-Aplique: `sudo sysctl --system`
-
+Adicione: `net.ipv4.ip_forward=1`. Na sequência, aplique com:
+```bash
+`sudo sysctl --system`
+```
 ### Configurar NAT Permanente
 ```bash
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
