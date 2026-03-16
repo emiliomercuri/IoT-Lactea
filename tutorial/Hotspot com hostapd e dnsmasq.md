@@ -139,7 +139,7 @@ exit 0
 ```
 Dê permissão:
 ```bash
-`sudo chmod +x /etc/rc.local`
+sudo chmod +x /etc/rc.local
 ```
 ---
 
