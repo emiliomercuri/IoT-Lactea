@@ -100,7 +100,10 @@ rsn_pairwise=CCMP
 ```
 
 Aponte a config no arquivo padrão:
-`sudo nano /etc/default/hostapd` -> Altere para: `DAEMON_CONF="/etc/hostapd/hostapd.conf"`
+```bash
+sudo nano /etc/default/hostapd
+```
+-> Altere a linha #DAEMON_CONF="" para: `DAEMON_CONF="/etc/hostapd/hostapd.conf"`
 
 ---
 
