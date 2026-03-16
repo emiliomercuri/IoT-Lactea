@@ -131,8 +131,10 @@ iptables-restore < /etc/iptables.ipv4.nat
 
 exit 0
 ```
-Dê permissão: `sudo chmod +x /etc/rc.local`
-
+Dê permissão:
+```bash
+`sudo chmod +x /etc/rc.local`
+```
 ---
 
 ## ✅ 4. Inicialização Final
