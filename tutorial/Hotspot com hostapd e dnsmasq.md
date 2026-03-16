@@ -123,9 +123,13 @@ sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 ```bash
 sudo nano /etc/rc.local
 ```
-Adicione antes do `exit 0`:
+Adicione o seguinte:
 ```bash
+#!/bin/sh -e
+
 iptables-restore < /etc/iptables.ipv4.nat
+
+exit 0
 ```
 Dê permissão: `sudo chmod +x /etc/rc.local`
 
