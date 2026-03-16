@@ -65,8 +65,10 @@ interface wlan0
     static ip_address=192.168.4.1/24
     nohook wpa_supplicant
 ```
-Reinicie o DHCP: `sudo service dhcpcd restart`
-
+Reinicie o DHCP:
+```bash
+sudo service dhcpcd restart
+```
 ### Configurar Servidor DHCP (`dnsmasq`)
 ```bash
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.original
