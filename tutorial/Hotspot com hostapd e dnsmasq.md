@@ -22,7 +22,7 @@ rfkill list
 
 Agora, instale as dependências:
 ```bash
-sudo apt update
+sudo apt update && sudo apt upgrade -y
 sudo apt install dhcpcd5 hostapd dnsmasq iptables-persistent -y
 ```
 
