@@ -110,7 +110,7 @@ Ative o encaminhamento de pacotes no kernel:
 sudo nano /etc/sysctl.conf
 ```
 
-Descomente a linha:
+Adicione a linha:
 ```conf
 net.ipv4.ip_forward=1
 ```
