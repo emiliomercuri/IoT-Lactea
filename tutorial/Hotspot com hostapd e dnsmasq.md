@@ -11,11 +11,13 @@ No RPi OS Lite, o Wi-Fi pode vir "bloqueado por software" por padrão. Precisamo
 ```bash
 # Verifica se o Wi-Fi está bloqueado (Soft blocked: yes)
 sudo rfkill list
-
+```
+```bash
 # Desbloqueia o rádio
 sudo rfkill unblock wifi
 sudo rfkill unblock all
-
+```
+```bash
 # Confirme se agora aparece "Soft blocked: no"
 rfkill list
 ```
