@@ -1,50 +1,61 @@
-# 🛰️ Configuração de Hotspot no Raspberry Pi 3B+ (Versão Robusta)
+# 🛰️ Configuração de Hotspot no Raspberry Pi 3B+ (Versão Final com Persistência Total)
 
-Este guia detalha o processo de transformação de um Raspberry Pi 3B+ (rodando **Raspberry Pi OS Lite**) em um Access Point (Hotspot). Esta versão inclui correções para bloqueios de rádio (rfkill) e conflitos com o `wpa_supplicant`.
+Este guia detalha o processo de transformação de um Raspberry Pi 3B+ em um Access Point (Hotspot). Esta versão inclui a criação de um serviço de sistema para garantir que o rádio Wi-Fi nunca seja bloqueado no boot.
 
 ---
 
-## 🛠️ 0. Preparação e Desbloqueio de Hardware
+## 🛠️ 0. Instalação e Limpeza Inicial
 
-No RPi OS Lite, o Wi-Fi pode vir "bloqueado por software" por padrão. Precisamos garantir que o rádio esteja livre antes de instalar os serviços.
+No **RPi OS Lite**, precisamos instalar os pacotes essenciais e remover o que pode causar conflito.
 
 ```bash
-# Verifica se o Wi-Fi está bloqueado (Soft blocked: yes)
-sudo rfkill list
-```
-```bash
-# Desbloqueia o rádio
-sudo rfkill unblock wifi
-sudo rfkill unblock all
-```
-```bash
-# Confirme se agora aparece "Soft blocked: no"
-rfkill list
-```
-
-Agora, instale as dependências:
-```bash
+# Atualiza repositórios e instala dependências
 sudo apt update && sudo apt upgrade -y
 sudo apt install dhcpcd5 hostapd dnsmasq iptables-persistent -y
 ```
-
----
-
-## 🏃 Passo a Passo de Configuração
-
-### 1️⃣ Parar e Limpar Conflitos
-O `wpa_supplicant` tenta gerenciar o Wi-Fi para se conectar a redes externas. Como seremos um *Access Point*, ele deve ser desativado para não conflitar com o `hostapd`.
-
 ```bash
-# Para os serviços de rede
-sudo systemctl stop hostapd
-sudo systemctl stop dnsmasq
-
-# Desabilita o wpa_supplicant para evitar conflitos na wlan0
+# Desabilita o wpa_supplicant para evitar que ele tente controlar a wlan0
+sudo systemctl stop wpa_supplicant
 sudo systemctl disable wpa_supplicant
 ```
 
-### 2️⃣ Configurar IP Fixo para a interface Wi-Fi (`wlan0`)
+---
+
+## 🔐 1. Garantindo o Desbloqueio do Wi-Fi (rfkill)
+
+Para evitar que o Wi-Fi seja bloqueado por software no boot (o que derruba o `hostapd`), criaremos um serviço dedicado:
+
+1. **Crie o arquivo do serviço:**
+   ```bash
+   sudo nano /etc/systemd/system/wifi-unblock.service
+   ```
+
+2. **Cole o conteúdo abaixo:**
+   ```ini
+   [Unit]
+   Description=Garantir desbloqueio do Wi-Fi (rfkill)
+   After=network.target
+
+   [Service]
+   Type=oneshot
+   ExecStart=/usr/sbin/rfkill unblock all
+   RemainAfterExit=yes
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+3. **Habilite o serviço:**
+   ```bash
+   sudo systemctl enable wifi-unblock.service
+   sudo systemctl start wifi-unblock.service
+   ```
+
+---
+
+## 🏃 2. Configuração de Rede
+
+### Configurar IP Fixo (`wlan0`)
 ```bash
 sudo nano /etc/dhcpcd.conf
 ```
@@ -54,12 +65,9 @@ interface wlan0
     static ip_address=192.168.4.1/24
     nohook wpa_supplicant
 ```
-Reinicie o DHCP:
-```bash
-sudo service dhcpcd restart
-```
+Reinicie o DHCP: `sudo service dhcpcd restart`
 
-### 3️⃣ Configurar o Servidor DHCP (`dnsmasq`)
+### Configurar Servidor DHCP (`dnsmasq`)
 ```bash
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.original
 sudo nano /etc/dnsmasq.conf
@@ -70,7 +78,7 @@ interface=wlan0
 dhcp-range=192.168.4.10,192.168.4.50,255.255.255.0,24h
 ```
 
-### 4️⃣ Configurar o Access Point (`hostapd`)
+### Configurar o Access Point (`hostapd`)
 ```bash
 sudo nano /etc/hostapd/hostapd.conf
 ```
@@ -89,75 +97,53 @@ wpa_key_mgmt=WPA-PSK
 rsn_pairwise=CCMP
 ```
 
-### 5️⃣ Apontar o arquivo de configuração
-```bash
-sudo nano /etc/default/hostapd
-```
-Altere a linha para:
-`DAEMON_CONF="/etc/hostapd/hostapd.conf"`
+Aponte a config no arquivo padrão:
+`sudo nano /etc/default/hostapd` -> Altere para: `DAEMON_CONF="/etc/hostapd/hostapd.conf"`
 
 ---
 
-## 🌐 6. Roteamento e NAT (Método Robusto)
+## 🌐 3. Roteamento e NAT Profissional
 
-Em vez de apenas editar o `sysctl.conf`, criaremos um arquivo específico de prioridade para garantir o encaminhamento de IP no boot.
+Para que a internet passe da `eth0` (cabo) para a `wlan0` (Wi-Fi) de forma permanente:
 
+### Ativar Forwarding
 ```bash
-# Cria a configuração de encaminhamento permanente
 sudo nano /etc/sysctl.d/99-ipforward.conf
 ```
-Coloque apenas esta linha:
-```conf
-net.ipv4.ip_forward=1
-```
+Adicione: `net.ipv4.ip_forward=1`
+Aplique: `sudo sysctl --system`
 
-Aplique as configurações do sistema:
-```bash
-sudo sysctl --system
-```
-
-**Configurar o NAT (Cabo -> Wi-Fi):**
+### Configurar NAT Permanente
 ```bash
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 ```
 
----
-
-## 🔄 7. Persistência e Inicialização
-
-### Restaurar NAT via `rc.local`
-Abra o arquivo:
+### Restaurar no Boot via `rc.local`
 ```bash
 sudo nano /etc/rc.local
 ```
-Adicione o seguinte:
+Adicione antes do `exit 0`:
 ```bash
-#!/bin/sh -e
-
 iptables-restore < /etc/iptables.ipv4.nat
-
-exit 0
 ```
-Garanta a permissão:
-```bash
-sudo chmod +x /etc/rc.local
-```
+Dê permissão: `sudo chmod +x /etc/rc.local`
 
-### Ativar serviços
+---
+
+## ✅ 4. Inicialização Final
+
+Agora, desmascare e ative os serviços principais:
+
 ```bash
 sudo systemctl unmask hostapd
-sudo systemctl enable hostapd
-sudo systemctl enable dnsmasq
-sudo systemctl start hostapd
-sudo systemctl start dnsmasq
+sudo systemctl enable hostapd dnsmasq
+sudo systemctl restart hostapd dnsmasq
 ```
 
 ---
 
-## ✅ Verificação Final
-Para ter certeza de que o roteamento está ativo:
-`sysctl net.ipv4.ip_forward`
-> Deve retornar `1`.
-
-Se o Wi-Fi não aparecer, verifique novamente o `rfkill list`.
+## 🔍 Comandos de Diagnóstico
+* Verifique o rádio: `rfkill list`
+* Verifique o encaminhamento: `sysctl net.ipv4.ip_forward`
+* Status dos serviços: `sudo systemctl status hostapd dnsmasq`
