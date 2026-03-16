@@ -47,8 +47,8 @@ Para evitar que o Wi-Fi seja bloqueado por software no boot (o que derruba o `ho
 
 3. **Habilite o serviço:**
    ```bash
-   sudo systemctl enable wifi-unblock.service
-   sudo systemctl start wifi-unblock.service
+   sudo systemctl daemon-reload
+   sudo systemctl enable unblock-wifi
    ```
 
 ---
