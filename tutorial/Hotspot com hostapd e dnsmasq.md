@@ -1,82 +1,78 @@
-# 🛰️ Configuração de Hotspot no Raspberry Pi 3B+
+# 🛰️ Configuração de Hotspot no Raspberry Pi 3B+ (Versão Robusta)
 
-Este guia detalha o processo de transformação de um Raspberry Pi 3B+ (rodando **Raspberry Pi OS Lite**) em um Access Point (Hotspot), permitindo a conexão de dispositivos via Wi-Fi e o roteamento de internet vinda da interface ethernet (`eth0`).
+Este guia detalha o processo de transformação de um Raspberry Pi 3B+ (rodando **Raspberry Pi OS Lite**) em um Access Point (Hotspot). Esta versão inclui correções para bloqueios de rádio (rfkill) e conflitos com o `wpa_supplicant`.
 
 ---
 
-## 🛠️ 0. Preparação e Instalação de Dependências
+## 🛠️ 0. Preparação e Desbloqueio de Hardware
 
-No **RPi OS Lite**, muitos pacotes de gerenciamento de rede não vêm instalados por padrão. Antes de iniciar a configuração, instale todas as ferramentas necessárias:
+No RPi OS Lite, o Wi-Fi pode vir "bloqueado por software" por padrão. Precisamos garantir que o rádio esteja livre antes de instalar os serviços.
 
 ```bash
-# Atualiza a lista de repositórios
-sudo apt update && sudo apt upgrade
+# Verifica se o Wi-Fi está bloqueado (Soft blocked: yes)
+sudo rfkill list
+
+# Desbloqueia o rádio
+sudo rfkill unblock wifi
+sudo rfkill unblock all
+
+# Confirme se agora aparece "Soft blocked: no"
+rfkill list
 ```
+
+Agora, instale as dependências:
 ```bash
-# Instala o gerenciador de DHCP, o daemon do ponto de acesso, o DNS recursivo e utilitários de firewall
+sudo apt update
 sudo apt install dhcpcd5 hostapd dnsmasq iptables-persistent -y
 ```
-
-> [!IMPORTANT]
-> Se o serviço `dhcpcd` não estiver ativo após a instalação, certifique-se de habilitá-lo com: `sudo systemctl enable dhcpcd`.
 
 ---
 
 ## 🏃 Passo a Passo de Configuração
 
-### 1️⃣ Parar serviços para configuração
-Antes de editar os arquivos, interrompa os processos que serão configurados:
+### 1️⃣ Parar e Limpar Conflitos
+O `wpa_supplicant` tenta gerenciar o Wi-Fi para se conectar a redes externas. Como seremos um *Access Point*, ele deve ser desativado para não conflitar com o `hostapd`.
 
 ```bash
+# Para os serviços de rede
 sudo systemctl stop hostapd
 sudo systemctl stop dnsmasq
+
+# Desabilita o wpa_supplicant para evitar conflitos na wlan0
+sudo systemctl disable wpa_supplicant
 ```
 
 ### 2️⃣ Configurar IP Fixo para a interface Wi-Fi (`wlan0`)
-Edite o arquivo de configuração do DHCP do sistema:
-
 ```bash
 sudo nano /etc/dhcpcd.conf
 ```
-
-Adicione o seguinte bloco ao final do arquivo:
-
+Adicione ao final:
 ```conf
 interface wlan0
     static ip_address=192.168.4.1/24
     nohook wpa_supplicant
 ```
-
-Reinicie o serviço para aplicar as mudanças:
+Reinicie o DHCP:
 ```bash
 sudo service dhcpcd restart
 ```
 
 ### 3️⃣ Configurar o Servidor DHCP (`dnsmasq`)
-O `dnsmasq` gerenciará a atribuição de IPs. Vamos criar um arquivo novo:
-
 ```bash
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.original
 sudo nano /etc/dnsmasq.conf
 ```
-
-Insira as configurações abaixo:
+Conteúdo:
 ```conf
-# Interface de escuta
 interface=wlan0
-
-# Faixa de IPs (Início, Fim, Máscara, Tempo de concessão)
 dhcp-range=192.168.4.10,192.168.4.50,255.255.255.0,24h
 ```
 
 ### 4️⃣ Configurar o Access Point (`hostapd`)
-Defina as credenciais e parâmetros do Wi-Fi:
-
 ```bash
 sudo nano /etc/hostapd/hostapd.conf
 ```
-
-Cole o conteúdo abaixo:
+Conteúdo:
 ```conf
 interface=wlan0
 driver=nl80211
@@ -91,95 +87,71 @@ wpa_key_mgmt=WPA-PSK
 rsn_pairwise=CCMP
 ```
 
-### 5️⃣ Apontar o binário para o arquivo de configuração
-Informe ao sistema onde o arquivo do `hostapd` está localizado:
-
+### 5️⃣ Apontar o arquivo de configuração
 ```bash
 sudo nano /etc/default/hostapd
 ```
+Altere a linha para:
+`DAEMON_CONF="/etc/hostapd/hostapd.conf"`
 
-Encontre a linha `#DAEMON_CONF=""` e altere para:
+---
+
+## 🌐 6. Roteamento e NAT (Método Robusto)
+
+Em vez de apenas editar o `sysctl.conf`, criaremos um arquivo específico de prioridade para garantir o encaminhamento de IP no boot.
+
 ```bash
-DAEMON_CONF="/etc/hostapd/hostapd.conf"
+# Cria a configuração de encaminhamento permanente
+sudo nano /etc/sysctl.d/99-ipforward.conf
 ```
-
-### 6️⃣ Ativar Roteamento de IP (Forwarding)
-Ative o encaminhamento de pacotes no kernel:
-
-```bash
-sudo nano /etc/sysctl.conf
-```
-
-Adicione a linha:
+Coloque apenas esta linha:
 ```conf
 net.ipv4.ip_forward=1
 ```
 
-Aplique a alteração:
+Aplique as configurações do sistema:
 ```bash
-sudo sysctl -p
+sudo sysctl --system
 ```
 
-### 7️⃣ Configurar NAT (IP Tables)
-Crie a regra de mascaramento para rotear o tráfego da `eth0` para a `wlan0`:
-
+**Configurar o NAT (Cabo -> Wi-Fi):**
 ```bash
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 ```
 
-### 8️⃣ Inicialização dos Serviços
-Inicie e habilite os serviços:
-
-```bash
-# Unmask necessário em algumas versões do RPi OS
-sudo systemctl unmask hostapd
-sudo systemctl start hostapd
-sudo systemctl start dnsmasq
-
-# Habilitar no boot
-sudo systemctl enable hostapd
-sudo systemctl enable dnsmasq
-```
-
 ---
 
-## 🔄 Garantindo Persistência no Boot
+## 🔄 7. Persistência e Inicialização
 
-Para garantir que o roteamento e as regras de firewall (NAT) sobrevivam a reinicializações no **OS Lite**:
-
-### 1️⃣ Confirmar Persistência do `ip_forward`
-**Teste de validação:**
-```bash
-sysctl net.ipv4.ip_forward
-```
-> O retorno esperado deve ser: `net.ipv4.ip_forward = 1`
-
-### 2️⃣ Restaurar NAT Automaticamente no Boot via `rc.local`
-Abra (ou crie) o arquivo:
+### Restaurar NAT via `rc.local`
+Abra o arquivo:
 ```bash
 sudo nano /etc/rc.local
 ```
-
-Certifique-se de que o conteúdo seja exatamente este, inserindo o comando antes do `exit 0`:
-
+Adicione antes do `exit 0`:
 ```bash
-#!/bin/sh -e
-
-# Restaura as regras de NAT salvas anteriormente
 iptables-restore < /etc/iptables.ipv4.nat
-
-exit 0
 ```
-
-Dê permissão de execução ao script:
+Garanta a permissão:
 ```bash
 sudo chmod +x /etc/rc.local
 ```
 
+### Ativar serviços
+```bash
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+sudo systemctl enable dnsmasq
+sudo systemctl start hostapd
+sudo systemctl start dnsmasq
+```
+
 ---
 
-## ✅ Conclusão
-O Raspberry Pi agora está configurado para iniciar automaticamente como um roteador Wi-Fi após qualquer reinicialização.
+## ✅ Verificação Final
+Para ter certeza de que o roteamento está ativo:
+`sysctl net.ipv4.ip_forward`
+> Deve retornar `1`.
 
----
+Se o Wi-Fi não aparecer, verifique novamente o `rfkill list`.
