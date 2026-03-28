@@ -25,9 +25,5 @@ Como instalamos a versão **Lite** (sem interface gráfica), o acesso será feit
 4. O sistema solicitará as credenciais configuradas anteriormente:
    * **login:** `<nome_de_usuário>`
    * **Password:** `<senha>`
-
-## 4. Por que usar este método em Monitoramento Ambiental?
-* **Acesso em Campo:** Permite verificar se os sensores de $NO_2$, $O_3$ e Material Particulado estão coletando dados em tempo real, mesmo que o Raspberry esteja instalado em um local de difícil acesso.
-* **Manutenção Remota:** Você pode atualizar scripts Python ou reiniciar serviços MQTT de casa ou da universidade sem precisar estar fisicamente ao lado do equipamento.
 * **Segurança de Rede:** O serviço atravessa firewalls acadêmicos ou residenciais de forma segura, eliminando a necessidade de configurações complexas de IP fixo ou DDNS.
 
