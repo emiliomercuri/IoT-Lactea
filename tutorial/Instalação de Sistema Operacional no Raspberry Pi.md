@@ -23,7 +23,6 @@ Ao abrir o Imager, siga estas seleções:
 <img width="490" height="350" alt="Captura de tela 2026-03-28 175901" src="https://github.com/user-attachments/assets/98687766-26c3-4c85-a620-4bc14a20339b" />
 
 ## 3. Personalização do Sistema (OS Customization)
-Após clicar em "Seguinte", selecione **"EDITAR DEFINIÇÕES"**. Esta etapa é crucial para o funcionamento "headless" (sem monitor).
 
 ### Hostname
 * Aqui, foi definido como: `lactea3-daniel`
