@@ -1,4 +1,4 @@
-<img width="856" height="605" alt="Captura de tela 2026-03-28 175609" src="https://github.com/user-attachments/assets/1b599a56-6418-4007-a920-2fedc52ba762" /># Guia de Instalação: Raspberry Pi OS Lite (64-bit) para Monitoramento Ambiental
+# Guia de Instalação: Raspberry Pi OS Lite (64-bit) para Monitoramento Ambiental
 
 Este tutorial detalha o processo de instalação do sistema operacional em um **Raspberry Pi 3B+**, configurado para atuar em uma rede de sensores IoT (monitoramento de NO2, O3 e Material Particulado).
 
@@ -10,10 +10,13 @@ O primeiro passo é baixar a ferramenta oficial de escrita de imagem da Raspberr
 Ao abrir o Imager, siga estas seleções:
 
 1.  **Escolher Dispositivo:** Selecione `Raspberry Pi 3`.
-<img width="851" height="603" alt="Captura de tela 2026-03-28 175537" src="https://github.com/user-attachments/assets/4651be7e-975e-42a9-932e-962a5dc6db93" />
+<img width="420" height="300" alt="Captura de tela 2026-03-28 175537" src="https://github.com/user-attachments/assets/4651be7e-975e-42a9-932e-962a5dc6db93" />
+
 2.  **Escolher SO:** Vá em `Raspberry Pi OS (other)` -> `Raspberry Pi OS Lite (64-bit)`.
-<img width="856" height="605" alt="Captura de tela 2026-03-28 175609" src="https://github.com/user-attachments/assets/5fb57ab3-13b1-461c-bbd4-b84711250832" />
-<img width="853" height="607" alt="Captura de tela 2026-03-28 175642" src="https://github.com/user-attachments/assets/d7e686b5-acc4-40c2-8e89-4a5a4e75e4e3" />
+<img width="420" height="300" alt="Captura de tela 2026-03-28 175609" src="https://github.com/user-attachments/assets/5fb57ab3-13b1-461c-bbd4-b84711250832" />
+
+<img width="420" height="300" alt="Captura de tela 2026-03-28 175642" src="https://github.com/user-attachments/assets/d7e686b5-acc4-40c2-8e89-4a5a4e75e4e3" />
+
     > **Nota Técnica:** A versão **Lite** não possui interface gráfica. Para um projeto de sensores que rodará scripts Python e MQTT 24/7, isso é ideal, pois economiza memória RAM e processamento, aumentando a estabilidade do sistema. A arquitetura **64 bits** permite o uso de bibliotecas de análise de dados mais modernas.
 3.  **Escolher Armazenamento:** Selecione o seu cartão SD (ex: 16GB).
 <img width="973" height="604" alt="Captura de tela 2026-03-28 175901" src="https://github.com/user-attachments/assets/98687766-26c3-4c85-a620-4bc14a20339b" />
@@ -36,8 +39,10 @@ Após clicar em "Seguinte", selecione **"EDITAR DEFINIÇÕES"**. Esta etapa é c
 ### Serviços e Conectividade
 * **Wi-Fi:** Pode ser ignorado se você for utilizar o cabo Ethernet. O cabo oferece uma conexão mais estável para transmissão de dados de sensores.
 <img width="973" height="602" alt="Captura de tela 2026-03-28 180519" src="https://github.com/user-attachments/assets/640d944d-5788-484b-948c-ad5d850df173" />
+
 * **SSH:** Ative o SSH e selecione "Utilizar autenticação por palavra-passe". Isso permite que você acesse o terminal do Raspberry de qualquer outro computador na mesma rede.
 <img width="973" height="604" alt="Captura de tela 2026-03-28 180744" src="https://github.com/user-attachments/assets/7b38ecaf-f54a-4bcf-aee8-5b0ffb0b348e" />
+
 * **Raspberry Pi Connect:** Ative esta opção para acesso remoto simplificado.
     1. Clique em "Abrir Raspberry Pi Connect".
     2. Você será levado ao navegador para gerar um **Token de autenticação** de maneira automática.
