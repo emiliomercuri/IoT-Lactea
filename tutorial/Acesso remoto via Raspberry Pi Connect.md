@@ -23,8 +23,8 @@ Como instalamos a versão **Lite** (sem interface gráfica), o acesso será feit
 2. Selecione a opção **"Remote Shell"**.
 3. Uma janela de terminal será aberta diretamente no seu navegador.
 4. O sistema solicitará as credenciais configuradas anteriormente:
-   * **login:** `lactea3`
-   * **Password:** (a senha definida no Imager)
+   * **login:** `<nome_de_usuário>`
+   * **Password:** `<senha>`
 
 ## 4. Por que usar este método em Monitoramento Ambiental?
 * **Acesso em Campo:** Permite verificar se os sensores de $NO_2$, $O_3$ e Material Particulado estão coletando dados em tempo real, mesmo que o Raspberry esteja instalado em um local de difícil acesso.
