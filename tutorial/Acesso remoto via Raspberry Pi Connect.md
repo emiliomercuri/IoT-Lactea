@@ -3,8 +3,9 @@
 Este guia explica como acessar o terminal do seu Raspberry Pi 3B+ de qualquer lugar utilizando o serviço **Raspberry Pi Connect**, sem a necessidade de monitor, teclado ou configurações de portas no roteador.
 
 ## 1. Inicialização do Hardware
-1. Insira o cartão MicroSD (gravado com o token do Connect) no seu **Raspberry Pi 3B+**. 
-Caso você não saiba como fazer o flashing do cartão SD para instalar o sistema operacional, acesse o seguinte tutorial: https://github.com/emiliomercuri/IoT-Lactea/blob/main/tutorial/Instala%C3%A7%C3%A3o%20de%20Sistema%20Operacional%20no%20Raspberry%20Pi.md
+1. Insira o cartão MicroSD (gravado com o token do Connect) no seu **Raspberry Pi 3B+**.
+>Caso você não saiba como fazer o flashing do cartão SD para instalar o sistema operacional, acesse o seguinte tutorial: https://github.com/emiliomercuri/IoT-Lactea/blob/main/tutorial/Instala%C3%A7%C3%A3o%20de%20Sistema%20Operacional%20no%20Raspberry%20Pi.md
+>
 2. Conecte o **cabo de rede (Ethernet)**.
    > **Dica:** O uso do cabo garante que o serviço de nuvem suba sem instabilidades de sinal de Wi-Fi.
 3. Conecte a fonte de alimentação (5V / 2.5A).
