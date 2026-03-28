@@ -30,5 +30,3 @@ Como instalamos a versão **Lite** (sem interface gráfica), o acesso será feit
 * **Manutenção Remota:** Você pode atualizar scripts Python ou reiniciar serviços MQTT de casa ou da universidade sem precisar estar fisicamente ao lado do equipamento.
 * **Segurança de Rede:** O serviço atravessa firewalls acadêmicos ou residenciais de forma segura, eliminando a necessidade de configurações complexas de IP fixo ou DDNS.
 
----
-*Documentação técnica para projeto de monitoramento de poluentes - 2026.*
