@@ -15,6 +15,7 @@ Ao abrir o Imager, siga estas seleções:
 2.  **Escolher SO:** Vá em `Raspberry Pi OS (other)` -> `Raspberry Pi OS Lite (64-bit)`.
 <img width="420" height="300" alt="Captura de tela 2026-03-28 175609" src="https://github.com/user-attachments/assets/5fb57ab3-13b1-461c-bbd4-b84711250832" />
 
+
 <img width="420" height="300" alt="Captura de tela 2026-03-28 175642" src="https://github.com/user-attachments/assets/d7e686b5-acc4-40c2-8e89-4a5a4e75e4e3" />
 
     > **Nota Técnica:** A versão **Lite** não possui interface gráfica. Para um projeto de sensores que rodará scripts Python e MQTT 24/7, isso é ideal, pois economiza memória RAM e processamento, aumentando a estabilidade do sistema. A arquitetura **64 bits** permite o uso de bibliotecas de análise de dados mais modernas.
