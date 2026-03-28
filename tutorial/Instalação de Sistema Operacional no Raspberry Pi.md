@@ -57,3 +57,6 @@ Ao abrir o Imager, siga estas seleções:
 4.  Aguarde o processo de gravação e a verificação final.
 <img width="490" height="350" alt="Captura de tela 2026-03-28 181020" src="https://github.com/user-attachments/assets/1e33a57e-f9a8-4bde-8e06-fb257e96dfbb" />
 
+<img width="490" height="350" alt="Captura de tela 2026-03-28 181040" src="https://github.com/user-attachments/assets/77be51c3-e22b-4d35-be00-d9550633f2f1" />
+
+
