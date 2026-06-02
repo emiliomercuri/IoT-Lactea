@@ -1,0 +1,129 @@
+# ============================================================
+# MÓDULO 3 - NODE-RED, INFLUXDB E GRAFANA
+# IC Daniel - Dashboard e armazenamento de dados
+# ============================================================
+
+USERNAME="${SUDO_USER:-$USER}"
+USER_HOME="$(eval echo ~$USERNAME)"
+
+echo "===================================================="
+echo "Instalando Node-RED, InfluxDB 2 e Grafana..."
+echo "MQTT não será instalado neste módulo."
+echo "===================================================="
+
+if [ "$EUID" -ne 0 ]; then
+  echo "Execute com sudo:"
+  echo "sudo bash setup_ic.sh"
+  exit 1
+fi
+
+export DEBIAN_FRONTEND=noninteractive
+
+# -------------------------
+# DEPENDÊNCIAS BÁSICAS
+# -------------------------
+echo "[1/7] Atualizando sistema e instalando dependências..."
+
+apt update
+apt upgrade -y
+
+apt install -y \
+  curl \
+  gnupg \
+  ca-certificates \
+  apt-transport-https \
+# -------------------------
+# INSTALAÇÃO DO NODE-RED
+# -------------------------
+echo "[2/7] Instalando Node.js e Node-RED..."
+
+# O script oficial instala/atualiza Node.js e Node-RED.
+# O parâmetro --confirm-root evita interação desnecessária quando rodado com sudo.
+curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered -o install_nodered.sh
+bash install_nodered.sh --confirm-root
+rm install_nodered.sh
+
+# -------------------------
+# CONFIGURAÇÃO BÁSICA DO NODE-RED
+# -------------------------
+echo "[3/7] Configurando Node-RED como serviço..."
+
+systemctl enable nodered.service
+systemctl restart nodered.service
+
+# Limite de memória para Raspberry Pi
+mkdir -p /etc/systemd/system/nodered.service.d
+
+cat > /etc/systemd/system/nodered.service.d/override.conf <<EOF
+[Service]
+Environment="NODE_OPTIONS=--max_old_space_size=256"
+EOF
+
+systemctl daemon-reload
+systemctl restart nodered.service
+
+# -------------------------
+# INSTALAÇÃO DO INFLUXDB 2
+# -------------------------
+echo "[4/7] Adicionando repositório do InfluxDB..."
+
+curl -fsSL https://repos.influxdata.com/influxdata-archive.key \
+  | gpg --dearmor \
+  | tee /usr/share/keyrings/influxdb-archive-keyring.gpg >/dev/null
+
+echo "deb [signed-by=/usr/share/keyrings/influxdb-archive-keyring.gpg] https://repos.influxdata.com/debian stable main" \
+  > /etc/apt/sources.list.d/influxdb.list
+
+apt update
+
+echo "[5/7] Instalando e iniciando InfluxDB 2..."
+
+apt install -y influxdb2
+
+systemctl unmask influxdb || true
+systemctl enable influxdb
+systemctl restart influxdb
+
+# -------------------------
+# INSTALAÇÃO DO GRAFANA
+# -------------------------
+echo "[6/7] Adicionando repositório do Grafana..."
+
+curl -fsSL https://apt.grafana.com/gpg.key \
+  | gpg --dearmor \
+  | tee /usr/share/keyrings/grafana-archive-keyrings.gpg >/dev/null
+
+echo "deb [signed-by=/usr/share/keyrings/grafana-archive-keyrings.gpg] https://apt.grafana.com stable main" \
+  > /etc/apt/sources.list.d/grafana.list
+
+apt update
+
+echo "[7/7] Instalando e iniciando Grafana..."
+
+apt install -y grafana
+
+systemctl enable grafana-server
+systemctl restart grafana-server
+
+echo "===================================================="
+echo "MÓDULO 3 FINALIZADO!"
+echo ""
+echo "Serviços instalados:"
+echo "  Node-RED:  porta 1880"
+echo "  InfluxDB:  porta 8086"
+echo "  Grafana:   porta 3000"
+echo ""
+echo "Acesse manualmente pelo navegador:"
+echo "  Node-RED:  http://192.168.4.1:1880"
+echo "  InfluxDB:  http://192.168.4.1:8086"
+echo "  Grafana:   http://192.168.4.1:3000"
+echo ""
+echo "Credenciais padrão do Grafana:"
+echo "  usuário: admin"
+echo "  senha: admin"
+echo ""
+echo "Checar status:"
+echo "  systemctl status nodered.service"
+echo "  systemctl status influxdb"
+echo "  systemctl status grafana-server"
+echo "===================================================="

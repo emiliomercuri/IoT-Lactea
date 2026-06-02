@@ -1,0 +1,306 @@
+#!/bin/bash
+set -e
+
+# ============================================================
+# MÓDULO 1 - CONFIGURAÇÃO DO HOTSPOT DO RASPBERRY PI
+# Projeto IC - Sensores NO2-B43F, OX-B431 e PMS7003
+# ============================================================
+
+# -------------------------
+# CONFIGURAÇÕES DO HOTSPOT
+# -------------------------
+SSID="lactea0_daniel"
+PASSWORD="iotempire0"        # mínimo 8 caracteres
+WLAN_IF="wlan0"
+INTERNET_IF="eth0"
+
+AP_IP="192.168.4.1"
+AP_CIDR="192.168.4.1/24"
+DHCP_START="192.168.4.10"
+DHCP_END="192.168.4.50"
+
+echo "===================================================="
+echo "Configurando hotspot do Raspberry Pi..."
+echo "SSID: $SSID"
+echo "IP do Raspberry no hotspot: $AP_IP"
+echo "===================================================="
+
+# -------------------------
+# VERIFICAÇÃO DE ROOT
+# -------------------------
+if [ "$EUID" -ne 0 ]; then
+  echo "Execute este script com sudo:"
+  echo "sudo bash setup_ic.sh"
+  exit 1
+fi
+
+# -------------------------
+# ATUALIZAÇÃO E PACOTES
+# -------------------------
+echo "[1/11] Atualizando sistema e instalando dependências..."
+
+export DEBIAN_FRONTEND=noninteractive
+
+apt update
+apt upgrade -y
+
+apt install -y \
+  dhcpcd5 \
+  hostapd \
+  dnsmasq \
+  iptables \
+  iptables-persistent \
+  rfkill \
+  wireless-tools \
+  iw \
+  network-manager
+
+# -------------------------
+# IMPEDIR CONFLITO COM NETWORKMANAGER
+# -------------------------
+echo "[2/11] Configurando NetworkManager para ignorar $WLAN_IF..."
+
+mkdir -p /etc/NetworkManager/conf.d
+
+cat > /etc/NetworkManager/conf.d/unmanaged-wlan0.conf <<EOF
+[keyfile]
+unmanaged-devices=interface-name:$WLAN_IF;interface-name:p2p-dev-$WLAN_IF
+EOF
+
+systemctl restart NetworkManager || true
+
+# -------------------------
+# EVITAR CONFLITO COM WPA_SUPPLICANT
+# -------------------------
+echo "[3/11] Parando e mascarando wpa_supplicant para evitar conflito com $WLAN_IF..."
+
+systemctl stop wpa_supplicant || true
+systemctl disable wpa_supplicant || true
+systemctl mask wpa_supplicant || true
+
+# -------------------------
+# SERVIÇO PARA DESBLOQUEAR WIFI
+# -------------------------
+echo "[4/11] Criando serviço wifi-unblock..."
+
+cat > /etc/systemd/system/wifi-unblock.service <<EOF
+[Unit]
+Description=Garantir desbloqueio do Wi-Fi via rfkill
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/rfkill unblock all
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable wifi-unblock.service
+systemctl start wifi-unblock.service || true
+
+rfkill unblock all || true
+
+# -------------------------
+# DESATIVAR POWER SAVE DO WI-FI
+# -------------------------
+echo "[5/11] Criando serviço para desativar power save do Wi-Fi..."
+
+cat > /etc/systemd/system/wlan0-powersave-off.service <<EOF
+[Unit]
+Description=Disable wlan0 power save
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/iw dev $WLAN_IF set power_save off
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable wlan0-powersave-off.service
+systemctl start wlan0-powersave-off.service || true
+
+iw dev "$WLAN_IF" set power_save off || true
+
+# -------------------------
+# CONFIGURAÇÃO DO DHCPCD
+# -------------------------
+echo "[6/11] Configurando IP fixo em $WLAN_IF..."
+
+if [ -f /etc/dhcpcd.conf ]; then
+  cp /etc/dhcpcd.conf /etc/dhcpcd.conf.backup.$(date +%Y%m%d_%H%M%S)
+
+  # Remove bloco antigo do hotspot, caso exista
+  sed -i '/# === IC HOTSPOT START ===/,/# === IC HOTSPOT END ===/d' /etc/dhcpcd.conf
+
+  cat >> /etc/dhcpcd.conf <<EOF
+
+# === IC HOTSPOT START ===
+interface $WLAN_IF
+    static ip_address=$AP_CIDR
+    nohook wpa_supplicant
+# === IC HOTSPOT END ===
+EOF
+
+  systemctl restart dhcpcd || service dhcpcd restart || true
+fi
+
+# Garante IP imediatamente mesmo se dhcpcd/netplan demorar
+ip link set "$WLAN_IF" up || true
+ip addr flush dev "$WLAN_IF" || true
+ip addr add "$AP_CIDR" dev "$WLAN_IF" || true
+
+# -------------------------
+# CONFIGURAÇÃO DO DNSMASQ
+# -------------------------
+echo "[7/11] Configurando dnsmasq..."
+
+if [ -f /etc/dnsmasq.conf ] && [ ! -f /etc/dnsmasq.conf.original ]; then
+  mv /etc/dnsmasq.conf /etc/dnsmasq.conf.original
+fi
+
+cat > /etc/dnsmasq.conf <<EOF
+interface=$WLAN_IF
+bind-interfaces
+dhcp-range=$DHCP_START,$DHCP_END,255.255.255.0,24h
+domain-needed
+bogus-priv
+EOF
+
+# -------------------------
+# CONFIGURAÇÃO DO HOSTAPD
+# -------------------------
+echo "[8/11] Configurando hostapd..."
+
+cat > /etc/hostapd/hostapd.conf <<EOF
+interface=$WLAN_IF
+driver=nl80211
+
+ssid=$SSID
+country_code=BR
+hw_mode=g
+channel=6
+
+wmm_enabled=0
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+
+wpa=2
+wpa_passphrase=$PASSWORD
+wpa_key_mgmt=WPA-PSK
+rsn_pairwise=CCMP
+EOF
+
+# Aponta o arquivo de configuração do hostapd
+if [ -f /etc/default/hostapd ]; then
+  if grep -q "^#DAEMON_CONF=" /etc/default/hostapd; then
+    sed -i 's|^#DAEMON_CONF=.*|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
+  elif grep -q "^DAEMON_CONF=" /etc/default/hostapd; then
+    sed -i 's|^DAEMON_CONF=.*|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
+  else
+    echo 'DAEMON_CONF="/etc/hostapd/hostapd.conf"' >> /etc/default/hostapd
+  fi
+fi
+
+# -------------------------
+# ATIVAR IP FORWARDING
+# -------------------------
+echo "[9/11] Ativando encaminhamento de IP..."
+
+cat > /etc/sysctl.d/99-ipforward.conf <<EOF
+net.ipv4.ip_forward=1
+EOF
+
+sysctl --system
+
+# -------------------------
+# CONFIGURAÇÃO DO NAT
+# -------------------------
+echo "[10/11] Configurando NAT para compartilhar internet via $INTERNET_IF..."
+
+iptables -t nat -C POSTROUTING -o "$INTERNET_IF" -j MASQUERADE 2>/dev/null || \
+iptables -t nat -A POSTROUTING -o "$INTERNET_IF" -j MASQUERADE
+
+iptables-save > /etc/iptables.ipv4.nat
+
+cat > /etc/rc.local <<EOF
+#!/bin/sh -e
+iptables-restore < /etc/iptables.ipv4.nat
+/usr/sbin/rfkill unblock all
+/usr/sbin/iw dev $WLAN_IF set power_save off || true
+exit 0
+EOF
+
+chmod +x /etc/rc.local
+
+# Serviço extra para garantir IP forwarding no boot
+cat > /etc/systemd/system/ipforward.service <<EOF
+[Unit]
+Description=Enable IP forwarding for hotspot
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/sysctl -w net.ipv4.ip_forward=1
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable ipforward.service
+
+# -------------------------
+# ATIVAR SERVIÇOS
+# -------------------------
+echo "[11/11] Ativando hostapd e dnsmasq..."
+
+systemctl unmask hostapd || true
+systemctl enable hostapd
+systemctl enable dnsmasq
+
+# Reinício limpo dos serviços
+systemctl stop hostapd || true
+systemctl stop dnsmasq || true
+
+rfkill unblock all || true
+ip link set "$WLAN_IF" up || true
+ip addr flush dev "$WLAN_IF" || true
+ip addr add "$AP_CIDR" dev "$WLAN_IF" || true
+iw dev "$WLAN_IF" set power_save off || true
+
+systemctl start dnsmasq
+systemctl start hostapd
+
+echo "===================================================="
+echo "HOTSPOT CONFIGURADO COM SUCESSO!"
+echo "Rede Wi-Fi: $SSID"
+echo "Senha: $PASSWORD"
+echo "IP do Raspberry: $AP_IP"
+echo ""
+echo "Verificações recomendadas:"
+echo "  nmcli dev status"
+echo "  systemctl status hostapd --no-pager"
+echo "  systemctl status dnsmasq --no-pager"
+echo "  rfkill list"
+echo "  iw dev $WLAN_IF get power_save"
+echo "  ip addr show $WLAN_IF"
+echo "  iw dev"
+echo "  iw dev $WLAN_IF station dump"
+echo ""
+echo "Resultado esperado:"
+echo "  wlan0 unmanaged no NetworkManager"
+echo "  Power save: off"
+echo "  hostapd active (running)"
+echo "  dnsmasq active (running)"
+echo "  wlan0 com IP $AP_CIDR"
+echo "  iw dev mostrando type AP e ssid $SSID"
+echo "===================================================="
