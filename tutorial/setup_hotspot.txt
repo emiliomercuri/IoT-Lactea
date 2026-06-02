@@ -9,8 +9,8 @@ set -e
 # -------------------------
 # CONFIGURAÇÕES DO HOTSPOT
 # -------------------------
-SSID="lactea0_daniel"
-PASSWORD="iotempire0"        # mínimo 8 caracteres
+SSID="nome_da_rede"
+PASSWORD="senha_da_rede"        # mínimo 8 caracteres
 WLAN_IF="wlan0"
 INTERNET_IF="eth0"
 
