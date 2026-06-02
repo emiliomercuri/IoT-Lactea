@@ -375,9 +375,7 @@ sudo bash 03_setup_ing.sh
 
 ## 7. Scripts
 
-Os scripts completos estão nos arquivos:
+Os scripts completos estão disponíveis na seguinte pasta:
 
-- [`01_setup_hotspot.sh`](./01_setup_hotspot.sh)
-- [`02_setup_pio_mqtt.sh`](./02_setup_pio_mqtt.sh)
-- [`03_setup_ing.sh`](./03_setup_ing.sh)
+https://github.com/emiliomercuri/IoT-Lactea/tree/main/tutorial
 
