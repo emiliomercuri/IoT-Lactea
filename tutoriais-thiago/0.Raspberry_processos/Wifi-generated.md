@@ -12,6 +12,10 @@ nmcli device
 
 Caso o dispositivo *wlan0* esteja desconectado, deverá ser ativado pelo seguinte código:
 ```
+sudo nmcli radio wifi on
+```
+Depois personalize a rede gerada:
+```
 sudo nmcli device wifi hotspot ssid <hotspot name> password <hotspot password> ifname wlan0
 ```
 
